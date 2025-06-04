@@ -3,17 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DEÜ YDY Yıl Sonu Notu Hesaplama</title>
+  <title>DEÜ Yıl Sonu Notu Hesaplama | Saklı Başarılar</title>
   <meta name="description" content="Dokuz Eylül Üniversitesi öğrencileri için yıl sonu notu hesaplama aracı. Quiz, vize, sunum ve diğer notları girerek ortalamanı öğren.">
   <meta name="keywords" content="DEÜ, yıl sonu not hesaplama, final notu, quiz vize, sunum, Saklı Başarılar, not ortalaması">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://saklibasarilar.blogspot.com/2024/04/ydy-puan-hesaplama_70.html">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -24,7 +21,6 @@
       flex-direction: column;
       padding: 20px;
     }
-
     .container {
       background-color: #fff;
       border-radius: 12px;
@@ -33,30 +29,23 @@
       max-width: 800px;
       width: 100%;
     }
-
     h1, h2 {
       text-align: center;
       color: #004085;
     }
-
     .inputs {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px 20px;
       margin-bottom: 30px;
     }
-
-    label {
-      font-weight: 500;
-    }
-
-    input {
+    label { font-weight: 500; }
+    input, select {
       padding: 6px 8px;
       width: 100%;
       border: 1px solid #ccc;
       border-radius: 6px;
     }
-
     button {
       display: block;
       margin: 0 auto;
@@ -69,45 +58,32 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
+    button:hover { background-color: #0056b3; }
     .result {
       text-align: center;
       font-size: 18px;
       font-weight: bold;
       margin-top: 20px;
     }
-
     p {
       text-align: center;
       font-size: 14px;
     }
-
     a {
       color: #007bff;
       text-decoration: none;
     }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
+    a:hover { text-decoration: underline; }
     #overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
       background-color: rgba(0, 0, 0, 0.75);
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 1000;
     }
-
     #ad-content {
       background-color: white;
       padding: 10px;
@@ -117,13 +93,11 @@
       position: relative;
       text-align: center;
     }
-
     #ad-image {
       width: 100%;
       height: auto;
       border-radius: 8px;
     }
-
     #countdown {
       position: absolute;
       top: -35px;
@@ -131,7 +105,6 @@
       font-size: 28px;
       color: #ff4444;
     }
-
     #close-btn {
       display: none;
       position: absolute;
@@ -143,11 +116,7 @@
       color: #ff4444;
       cursor: pointer;
     }
-
-    #close-btn:hover {
-      color: darkred;
-    }
-
+    #close-btn:hover { color: darkred; }
     .commentbox {
       margin-top: 40px;
       max-width: 800px;
@@ -157,7 +126,17 @@
 </head>
 <body>
   <div class="container">
-    <h1>DEÜ YDY Yıl Sonu Notu Hesaplama</h1>
+    <h1>DEÜ Yıl Sonu Notu Hesaplama</h1>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+      <label for="kurSec">Lütfen kurunuzu seçiniz: </label>
+      <select id="kurSec">
+        <option value="">-- Seçiniz --</option>
+        <option value="a">A Kur</option>
+        <option value="b">B Kur</option>
+        <option value="c">C Kur</option>
+      </select>
+    </div>
 
     <div class="inputs">
       <h2>1. Dönem</h2><span></span>
@@ -190,7 +169,6 @@
     <div id="result" class="result"></div>
   </div>
 
-  <!-- Reklam -->
   <div id="overlay">
     <div id="ad-content">
       <button id="close-btn">×</button>
@@ -199,7 +177,6 @@
     </div>
   </div>
 
-  <!-- Yorum Kutusu -->
   <div class="commentbox"></div>
   <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
   <script>
@@ -208,6 +185,12 @@
 
   <script>
     function calculate() {
+      const kur = document.getElementById("kurSec").value;
+      if (!kur) {
+        document.getElementById("result").textContent = "⚠️ Lütfen önce kurunuzu seçiniz.";
+        return;
+      }
+
       const inputs = document.querySelectorAll("input[type='number']");
       let isValid = true;
 
@@ -224,11 +207,29 @@
       });
 
       if (!isValid) {
-        document.getElementById("result").textContent = "⚠️ Lütfen tüm kutulara 0 ile 100 arasında geçerli değerler giriniz.";
+        document.getElementById("result").textContent = "⚠️ Lütfen tüm kutulara geçerli notlar giriniz.";
         return;
       }
 
-      document.getElementById("result").textContent = "✅ Notlar geçerli. (Hesaplama fonksiyonu eklenecek)";
+      const get = id => parseFloat(document.getElementById(id).value) || 0;
+      const quizler = [get("q1_1"), get("q2_1"), get("q1_2"), get("q2_2")];
+      const vizeler = [get("v1_1"), get("v2_1"), get("v1_2"), get("v2_2")];
+      const diger = [
+        get("sunum_1"), get("katilim_1"), get("odev_1"), get("writing_1"),
+        get("sunum_2"), get("katilim_2"), get("odev_2"), get("writing_2")
+      ];
+
+      const quizOrt = quizler.reduce((a, b) => a + b, 0) / quizler.length;
+      const vizeOrt = vizeler.reduce((a, b) => a + b, 0) / vizeler.length;
+      const digerOrt = diger.reduce((a, b) => a + b, 0) / diger.length;
+
+      const toplam = (quizOrt * 0.2) + (vizeOrt * 0.6) + (digerOrt * 0.05);
+      const gecmeNotu = kur === "a" ? 85 : kur === "b" ? 80 : 75;
+
+      const sonuc = toplam >= gecmeNotu ? "✅ Hazırlığı geçtiniz 🎉" : "❗ Finale kaldınız";
+      const notuYuvarla = Math.round(toplam * 100) / 100;
+
+      document.getElementById("result").textContent = `Ortalamanız: ${notuYuvarla} - ${sonuc}`;
     }
 
     let countdown = 3;
