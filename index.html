@@ -127,7 +127,6 @@
 <body>
   <div class="container">
     <h1>DEÜ Yıl Sonu Notu Hesaplama</h1>
-
     <div style="text-align: center; margin-bottom: 20px;">
       <label for="kurSec">Lütfen kurunuzu seçiniz: </label>
       <select id="kurSec">
@@ -165,91 +164,32 @@
     <button onclick="calculate()">Hesapla</button>
     <p><strong>Not:</strong> 64.5 üstü notlar 65'e yuvarlandığı için geçme notu 64.5 olarak alınmıştır.</p>
     <p>Final notuyla birlikte ortalamanızı hesaplamak için <a href="https://saklibasarilar.blogspot.com/2024/05/deu-final-hesaplama_28.html?m=1">buraya tıklayınız</a>.</p>
-
     <div id="result" class="result"></div>
-  </div>
-
-  <div id="overlay">
-    <div id="ad-content">
-      <button id="close-btn">×</button>
-      <img id="ad-image" src="https://i.pinimg.com/236x/b1/f4/d1/b1f4d157216cccf9fbaca47e7029d903.jpg" alt="Reklam Resmi" />
-      <p id="countdown">3</p>
-    </div>
   </div>
 
   <div class="commentbox"></div>
   <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
-  <script>
-    commentBox('5724459575017472-proj');
-  </script>
+  <script>commentBox('5724459575017472-proj');</script>
 
   <script>
     function calculate() {
       const kur = document.getElementById("kurSec").value;
-      if (!kur) {
-        document.getElementById("result").textContent = "⚠️ Lütfen önce kurunuzu seçiniz.";
-        return;
-      }
-
-      const inputs = document.querySelectorAll("input[type='number']");
-      let isValid = true;
-
-      inputs.forEach((input) => {
-        const value = parseFloat(input.value);
-        if (isNaN(value) || value < 0 || value > 100) {
-          input.style.border = "2px solid red";
-          input.title = "Lütfen 0 ile 100 arasında bir değer giriniz.";
-          isValid = false;
-        } else {
-          input.style.border = "";
-          input.title = "";
-        }
-      });
-
-      if (!isValid) {
-        document.getElementById("result").textContent = "⚠️ Lütfen tüm kutulara geçerli notlar giriniz.";
-        return;
-      }
+      if (!kur) return document.getElementById("result").textContent = "⚠️ Lütfen kurunuzu seçiniz.";
 
       const get = id => parseFloat(document.getElementById(id).value) || 0;
-      const quizler = [get("q1_1"), get("q2_1"), get("q1_2"), get("q2_2")];
-      const vizeler = [get("v1_1"), get("v2_1"), get("v1_2"), get("v2_2")];
-      const diger = [
-        get("sunum_1"), get("katilim_1"), get("odev_1"), get("writing_1"),
-        get("sunum_2"), get("katilim_2"), get("odev_2"), get("writing_2")
-      ];
-
-      const quizOrt = quizler.reduce((a, b) => a + b, 0) / quizler.length;
-      const vizeOrt = vizeler.reduce((a, b) => a + b, 0) / vizeler.length;
-      const digerOrt = diger.reduce((a, b) => a + b, 0) / diger.length;
-
-      const toplam = (quizOrt * 0.2) + (vizeOrt * 0.6) + (digerOrt * 0.05);
-      const gecmeNotu = kur === "a" ? 85 : kur === "b" ? 80 : 75;
-
-      const sonuc = toplam >= gecmeNotu ? "✅ Hazırlığı geçtiniz 🎉" : "❗ Finale kaldınız";
-      const notuYuvarla = Math.round(toplam * 100) / 100;
-
-      document.getElementById("result").textContent = `Ortalamanız: ${notuYuvarla} - ${sonuc}`;
-    }
-
-    let countdown = 3;
-    const countdownElement = document.getElementById("countdown");
-    const closeBtn = document.getElementById("close-btn");
-
-    const interval = setInterval(() => {
-      countdown--;
-      countdownElement.textContent = countdown;
-
-      if (countdown === 0) {
-        clearInterval(interval);
-        countdownElement.style.display = 'none';
-        closeBtn.style.display = 'block';
+      function hesaplaDonem(q1, q2, v1, v2, sunum, katilim, odev, writing) {
+        const quizOrt = (get(q1) + get(q2)) / 2;
+        const vizeOrt = (get(v1) + get(v2)) / 2;
+        return (quizOrt * 0.2) + (vizeOrt * 0.6) + (get(sunum) * 0.05) + (get(writing) * 0.05) + (get(odev) * 0.05) + (get(katilim) * 0.05);
       }
-    }, 1000);
-
-    closeBtn.addEventListener("click", () => {
-      document.getElementById("overlay").style.display = "none";
-    });
+      const d1 = hesaplaDonem("q1_1", "q2_1", "v1_1", "v2_1", "sunum_1", "katilim_1", "odev_1", "writing_1");
+      const d2 = hesaplaDonem("q1_2", "q2_2", "v1_2", "v2_2", "sunum_2", "katilim_2", "odev_2", "writing_2");
+      const ort = (d1 + d2) / 2;
+      const not = Math.round(ort * 100) / 100;
+      const sinir = kur === 'a' ? 85 : kur === 'b' ? 80 : 75;
+      const mesaj = not >= sinir ? "✅ Hazırlığı geçtiniz 🎉" : "❗ Finale kaldınız";
+      document.getElementById("result").textContent = `Ortalamanız: ${not} - ${mesaj}`;
+    }
   </script>
 </body>
 </html>
