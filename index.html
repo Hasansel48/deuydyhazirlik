@@ -1,210 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEÜ Yıl Sonu Notu Hesaplama | Saklı Başarılar</title>
+  <meta name="description" content="Dokuz Eylül Üniversitesi öğrencileri için yıl sonu notu hesaplama aracı. Quiz, vize, sunum ve diğer notları girerek ortalamanı öğren.">
+  <meta name="keywords" content="DEÜ, yıl sonu not hesaplama, final notu, quiz vize, sunum, Saklı Başarılar, not ortalaması">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://saklibasarilar.blogspot.com/2024/04/ydy-puan-hesaplama_70.html">
 
-    <title>DEÜ Yıl Sonu Notu Hesaplama | Saklı Başarılar</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-    <!-- SEO Etiketleri -->
-    <meta name="description" content="Dokuz Eylül Üniversitesi öğrencileri için yıl sonu notu hesaplama aracı. Quiz, vize, sunum ve diğer notları girerek ortalamanı öğren.">
-    <meta name="keywords" content="DEÜ, yıl sonu not hesaplama, final notu, quiz vize, sunum, Saklı Başarılar, not ortalaması">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://saklibasarilar.blogspot.com/2024/04/ydy-puan-hesaplama_70.html">
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0ecff, #ffffff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
 
-  
+    .container {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 30px 40px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      width: 100%;
+    }
 
-    <style>
-        /* Ana sayfa stili */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+    h1 {
+      text-align: center;
+      color: #004085;
+      margin-bottom: 10px;
+    }
 
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    h2 {
+      color: #0056b3;
+      margin-top: 20px;
+    }
 
-        .inputs {
-            margin-bottom: 20px;
-        }
+    .inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 20px;
+      margin-bottom: 30px;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
+    label {
+      font-weight: 500;
+    }
 
-        input {
-            width: 100px;
-            margin-bottom: 10px;
-        }
+    input {
+      padding: 6px 8px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
 
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    button {
+      display: block;
+      margin: 0 auto;
+      padding: 12px 24px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-        button:hover {
-            background-color: #0056b3;
-        }
+    button:hover {
+      background-color: #0056b3;
+    }
 
-        .result {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
+    .result {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
 
-        /* Reklam stili */
-        #overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+    p {
+      text-align: center;
+      font-size: 14px;
+    }
 
-        #ad-content {
-            background-color: white;
-            padding: auto;
-            border-radius: auto;
-            text-align: center;
-            position: relative;
-            max-width: 80%;
-            max-height: 80%;
-        }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
 
-        #countdown {
-            position: absolute;
-            top: -50px;
-            right: 10px;
-            font-size: 30px;
-            color: red;
-        }
+    a:hover {
+      text-decoration: underline;
+    }
 
-        #close-btn {
-            display: none;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 30px;
-            background-color: transparent;
-            border: none;
-            color: red;
-            cursor: pointer;
-        }
+    /* Reklam kaplaması */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.75);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
 
-        #close-btn:hover {
-            color: darkred;
-        }
+    #ad-content {
+      background-color: white;
+      padding: 10px;
+      border-radius: 10px;
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+      text-align: center;
+    }
 
-        #ad-image {
-            width: 100%;
-            height: auto;
-        }
-    </style>
+    #ad-image {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    #countdown {
+      position: absolute;
+      top: -35px;
+      right: 10px;
+      font-size: 28px;
+      color: #ff4444;
+    }
+
+    #close-btn {
+      display: none;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 28px;
+      background-color: transparent;
+      border: none;
+      color: #ff4444;
+      cursor: pointer;
+    }
+
+    #close-btn:hover {
+      color: darkred;
+    }
+  </style>
 </head>
-
 <body>
-    <!-- Yıl Sonu Notu Hesaplama -->
-    <div class="container">
-        <h1>DEÜ Yıl Sonu Notu Hesaplama</h1>
-        <div class="inputs">
-            <h2>Birinci Dönem</h2>
-            <label for="q1_1">Quiz 1:</label>
-            <input type="number" id="q1_1" max="100" min="0">
-            <label for="q2_1">Quiz 2:</label>
-            <input type="number" id="q2_1">
-            <label for="v1_1">Vize 1:</label>
-            <input type="number" id="v1_1">
-            <label for="v2_1">Vize 2:</label>
-            <input type="number" id="v2_1">
-            <label for="sunum_1">Sunum:</label>
-            <input type="number" id="sunum_1">
-            <label for="katilim_1">Katılım:</label>
-            <input type="number" id="katilim_1">
-            <label for="odev_1">Online Ödev:</label>
-            <input type="number" id="odev_1">
-            <label for="writing_1">Writing:</label>
-            <input type="number" id="writing_1">
-        </div>
+  <div class="container">
+    <h1>DEÜ Yıl Sonu Notu Hesaplama</h1>
 
-        <div class="inputs">
-            <h2>İkinci Dönem</h2>
-            <label for="q1_2">Quiz 1:</label>
-            <input type="number" id="q1_2">
-            <label for="q2_2">Quiz 2:</label>
-            <input type="number" id="q2_2">
-            <label for="v1_2">Vize 1:</label>
-            <input type="number" id="v1_2">
-            <label for="v2_2">Vize 2:</label>
-            <input type="number" id="v2_2">
-            <label for="sunum_2">Sunum:</label>
-            <input type="number" id="sunum_2">
-            <label for="katilim_2">Katılım:</label>
-            <input type="number" id="katilim_2">
-            <label for="odev_2">Online Ödev:</label>
-            <input type="number" id="odev_2">
-            <label for="writing_2">Writing:</label>
-            <input type="number" id="writing_2">
-        </div>
-
-        <button onclick="calculate()">Hesapla</button>
-        <p><strong>Not</strong>: 64.5 üstü notlar 65'e yuvarlandığı için geçme notu 64.5 olarak alınmıştır</p>
-      <p>Final notuyla birlikte ortalamanızı hesaplamak için <a href='https://saklibasarilar.blogspot.com/2024/05/deu-final-hesaplama_28.html?m=1'>buraya</a> tıklayınız.</p>
-        
-        <div id="result" class="result"></div>
+    <div class="inputs">
+      <h2>1. Dönem</h2>
+      <span></span>
+      <label>Quiz 1: <input type="number" id="q1_1" max="100" min="0" /></label>
+      <label>Quiz 2: <input type="number" id="q2_1" /></label>
+      <label>Vize 1: <input type="number" id="v1_1" /></label>
+      <label>Vize 2: <input type="number" id="v2_1" /></label>
+      <label>Sunum: <input type="number" id="sunum_1" /></label>
+      <label>Katılım: <input type="number" id="katilim_1" /></label>
+      <label>Online Ödev: <input type="number" id="odev_1" /></label>
+      <label>Writing: <input type="number" id="writing_1" /></label>
     </div>
 
-    <!-- Reklam Kısmı -->
-    <div id="overlay">
-        <div id="ad-content">
-            <button id="close-btn">×</button>
-            <img id="ad-image" src="https://i.pinimg.com/236x/b1/f4/d1/b1f4d157216cccf9fbaca47e7029d903.jpg" alt="Reklam Resmi">
-            <p id="countdown">3</p>
-        </div>
+    <div class="inputs">
+      <h2>2. Dönem</h2>
+      <span></span>
+      <label>Quiz 1: <input type="number" id="q1_2" /></label>
+      <label>Quiz 2: <input type="number" id="q2_2" /></label>
+      <label>Vize 1: <input type="number" id="v1_2" /></label>
+      <label>Vize 2: <input type="number" id="v2_2" /></label>
+      <label>Sunum: <input type="number" id="sunum_2" /></label>
+      <label>Katılım: <input type="number" id="katilim_2" /></label>
+      <label>Online Ödev: <input type="number" id="odev_2" /></label>
+      <label>Writing: <input type="number" id="writing_2" /></label>
     </div>
 
-    <script>
-        function calculate() {
-            // Not hesaplama mantığı buraya eklenecek (mevcut koddan alınabilir)
-            // ...
-        }
+    <button onclick="calculate()">Hesapla</button>
+    <p><strong>Not:</strong> 64.5 üstü notlar 65'e yuvarlandığı için geçme notu 64.5 olarak alınmıştır.</p>
+    <p>Final notuyla birlikte ortalamanızı hesaplamak için <a href='https://saklibasarilar.blogspot.com/2024/05/deu-final-hesaplama_28.html?m=1'>buraya tıklayınız.</a></p>
 
-        // Reklam sayacı
-        let countdown = 3;
-        const countdownElement = document.getElementById('countdown');
-        const closeBtn = document.getElementById('close-btn');
+    <div id="result" class="result"></div>
+  </div>
 
-        const interval = setInterval(() => {
-            countdown--;
-            countdownElement.textContent = countdown;
+  <!-- Reklam -->
+  <div id="overlay">
+    <div id="ad-content">
+      <button id="close-btn">×</button>
+      <img id="ad-image" src="https://i.pinimg.com/236x/b1/f4/d1/b1f4d157216cccf9fbaca47e7029d903.jpg" alt="Reklam Resmi" />
+      <p id="countdown">3</p>
+    </div>
+  </div>
 
-            if (countdown === 0) {
-                clearInterval(interval);
-                countdownElement.style.display = 'none';
-                closeBtn.style.display = 'block';
-            }
-        }, 1000);
+  <script>
+    // Not hesaplama fonksiyonu boş
+    function calculate() {
+      // Örnek: document.getElementById('result').textContent = 'Hesaplama sonucu: 85';
+    }
 
-        closeBtn.addEventListener('click', () => {
-            document.getElementById('overlay').style.display = 'none';
-        });
-    </script>
+    let countdown = 3;
+    const countdownElement = document.getElementById('countdown');
+    const closeBtn = document.getElementById('close-btn');
+
+    const interval = setInterval(() => {
+      countdown--;
+      countdownElement.textContent = countdown;
+
+      if (countdown === 0) {
+        clearInterval(interval);
+        countdownElement.style.display = 'none';
+        closeBtn.style.display = 'block';
+      }
+    }, 1000);
+
+    closeBtn.addEventListener('click', () => {
+      document.getElementById('overlay').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
