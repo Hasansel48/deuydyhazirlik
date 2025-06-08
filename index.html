@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DEÜ YDY Ortalama Hesaplama</title>
+  <title>DEÜ Not Hesaplama | Saklı Başarılar</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
@@ -274,11 +274,20 @@
     </div>
 
     <div class="final-container">
-      <h2>Final Hesaplama</h2>
-      <label>Yıl Sonu Notunuz: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="yearGrade" min="0" max="100"></label><br><br>
-      <label>Final Notunuz: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="finalGrade" min="0" max="100"></label><br><br>
-      <button onclick="calculateFinal()">Finalle Ortalamayı Hesapla</button>
-      <div id="finalResult" class="result"></div>
+  <h2>Final Hesaplama</h2>
+  <label>Yıl Sonu Notunuz: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="yearGrade" min="0" max="100"></label><br><br>
+  <label>Final Notunuz: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="finalGrade" min="0" max="100"></label><br><br>
+  <button onclick="calculateFinal()">Finalle Ortalamayı Hesapla</button>
+  <div id="finalResult" class="result"></div>
+</div>
+
+<!-- Yorum Kutusu -->
+<div style="width: 100%; max-width: 1000px; margin: 50px auto;">
+  <h2 style="text-align:center; color: #37474f; margin-bottom: 20px;">Yorumlar</h2>
+  <div class="commentbox" data-project-id="5724459575017472-proj"></div>
+  <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+  <script>commentBox('5724459575017472-proj');</script>
+</div>
         
 </body>
 </html>
