@@ -13,52 +13,45 @@
       background: linear-gradient(135deg, #e0ecff, #ffffff);
       min-height: 100vh;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       padding: 40px 20px;
       gap: 40px;
+      flex-wrap: wrap;
     }
 
     .main-wrapper {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       gap: 40px;
-      width: 100%;
-      max-width: 1300px;
+      justify-content: center;
+    }
+
+    .container, .final-container {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     }
 
     .container {
-      background-color: #fff;
-      border-radius: 12px;
-      padding: 40px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px 40px;
+      max-width: 800px;
+      width: 100%;
       flex: 2;
-      max-width: 700px;
     }
 
     .final-container {
-      background-color: #fff;
-      border-radius: 12px;
-      padding: 30px 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 360px;
+      width: 100%;
       flex: 1;
-      max-width: 350px;
-      height: fit-content;
       align-self: center;
     }
 
-    h1 {
+    h1, h2 {
       text-align: center;
       color: #004085;
       margin-bottom: 20px;
-      font-size: 22px;
-    }
-
-    h2 {
-      color: #0056b3;
-      margin-top: 20px;
     }
 
     .inputs {
@@ -89,7 +82,6 @@
       border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
 
     button:hover {
@@ -108,75 +100,81 @@
       font-size: 14px;
     }
 
-    @media screen and (max-width: 960px) {
-      body {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-      }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
 
-      .main-wrapper {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .container, .final-container {
-        max-width: 95%;
-      }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <div class="main-wrapper">
-
-    <!-- Sol taraf -->
+    <!-- Sol: Yıl içi notları -->
     <div class="container">
       <h1>DEÜ Yıl Sonu Notu Hesaplama</h1>
       <div class="inputs">
         <h2>1. Dönem</h2><span></span>
-        <label>Quiz 1: <input type="number" id="q1_1" /></label>
-        <label>Quiz 2: <input type="number" id="q2_1" /></label>
-        <label>Vize 1: <input type="number" id="v1_1" /></label>
-        <label>Vize 2: <input type="number" id="v2_1" /></label>
-        <label>Sunum: <input type="number" id="sunum_1" /></label>
-        <label>Katılım: <input type="number" id="katilim_1" /></label>
-        <label>Online Ödev: <input type="number" id="odev_1" /></label>
-        <label>Writing: <input type="number" id="writing_1" /></label>
+        <label>Quiz 1: <input type="number" id="q1_1"></label>
+        <label>Quiz 2: <input type="number" id="q2_1"></label>
+        <label>Vize 1: <input type="number" id="v1_1"></label>
+        <label>Vize 2: <input type="number" id="v2_1"></label>
+        <label>Sunum: <input type="number" id="sunum_1"></label>
+        <label>Katılım: <input type="number" id="katilim_1"></label>
+        <label>Online Ödev: <input type="number" id="odev_1"></label>
+        <label>Writing: <input type="number" id="writing_1"></label>
       </div>
-
       <div class="inputs">
         <h2>2. Dönem</h2><span></span>
-        <label>Quiz 1: <input type="number" id="q1_2" /></label>
-        <label>Quiz 2: <input type="number" id="q2_2" /></label>
-        <label>Vize 1: <input type="number" id="v1_2" /></label>
-        <label>Vize 2: <input type="number" id="v2_2" /></label>
-        <label>Sunum: <input type="number" id="sunum_2" /></label>
-        <label>Katılım: <input type="number" id="katilim_2" /></label>
-        <label>Online Ödev: <input type="number" id="odev_2" /></label>
-        <label>Writing: <input type="number" id="writing_2" /></label>
+        <label>Quiz 1: <input type="number" id="q1_2"></label>
+        <label>Quiz 2: <input type="number" id="q2_2"></label>
+        <label>Vize 1: <input type="number" id="v1_2"></label>
+        <label>Vize 2: <input type="number" id="v2_2"></label>
+        <label>Sunum: <input type="number" id="sunum_2"></label>
+        <label>Katılım: <input type="number" id="katilim_2"></label>
+        <label>Online Ödev: <input type="number" id="odev_2"></label>
+        <label>Writing: <input type="number" id="writing_2"></label>
       </div>
-
-      <button onclick="alert('Hesaplama fonksiyonu henüz tanımlanmadı.')">Hesapla</button>
+      <button onclick="calculateYear()">Hesapla</button>
       <p><strong>Not:</strong> 64.5 üstü notlar 65'e yuvarlandığı için geçme notu 64.5 olarak alınmıştır.</p>
       <div id="result" class="result"></div>
     </div>
 
-    <!-- Sağ taraf -->
+    <!-- Sağ: Final notu -->
     <div class="final-container">
       <h1>Final Ortalaması</h1>
       <div class="inputs" style="display: block;">
-        <label>Yıl Sonu Notu:</label>
-        <input type="number" id="yearGrade" max="100" min="0">
-        <label>Final Notu:</label>
-        <input type="number" id="finalGrade" max="100" min="0">
+        <label>Yıl Sonu Notu: <input type="number" id="yearGrade" max="100" min="0"></label>
+        <label>Final Notu: <input type="number" id="finalGrade" max="100" min="0"></label>
       </div>
       <button onclick="calculateFinal()">Hesapla</button>
       <div id="finalResult" class="result"></div>
     </div>
-
   </div>
 
   <script>
+    function calculateYear() {
+      const ids = [
+        'q1_1', 'q2_1', 'v1_1', 'v2_1', 'sunum_1', 'katilim_1', 'odev_1', 'writing_1',
+        'q1_2', 'q2_2', 'v1_2', 'v2_2', 'sunum_2', 'katilim_2', 'odev_2', 'writing_2'
+      ];
+      let total = 0;
+      let count = 0;
+      ids.forEach(id => {
+        const val = parseFloat(document.getElementById(id).value);
+        if (!isNaN(val)) {
+          total += val;
+          count++;
+        }
+      });
+      const average = count > 0 ? (total / count) : 0;
+      const resultText = `Yıl İçi Ortalamanız: ${average.toFixed(2)}<br>` +
+                         `Durum: ${average >= 64.5 ? 'Geçtiniz ✔️' : 'Kaldınız ❌'}`;
+      document.getElementById('result').innerHTML = resultText;
+    }
+
     function calculateFinal() {
       const yearGrade = parseFloat(document.getElementById('yearGrade').value);
       const finalGrade = parseFloat(document.getElementById('finalGrade').value);
@@ -184,15 +182,13 @@
         alert("Lütfen tüm alanları doldurun.");
         return;
       }
-
       const yearWeighted = yearGrade * 0.4;
       const finalWeighted = finalGrade * 0.6;
       const overall = yearWeighted + finalWeighted;
-
       const result = document.getElementById('finalResult');
-      result.innerHTML = `Yıl Sonu: ${yearGrade.toFixed(2)}<br>
-                          Final: ${finalGrade.toFixed(2)}<br>
-                          Ortalama: ${overall.toFixed(2)}`;
+      result.innerHTML = `Yıl Sonu: ${yearGrade.toFixed(2)}<br>` +
+                         `Final: ${finalGrade.toFixed(2)}<br>` +
+                         `Ortalama: ${overall.toFixed(2)}`;
     }
   </script>
 </body>
