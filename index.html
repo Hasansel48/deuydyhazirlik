@@ -3,49 +3,82 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DEÜ Yıl Sonu Notu Hesaplama | Saklı Başarılar</title>
-  <meta name="description" content="Dokuz Eylül Üniversitesi öğrencileri için yıl sonu notu hesaplama aracı. Quiz, vize, sunum ve diğer notları girerek ortalamanı öğren.">
-  <meta name="keywords" content="DEÜ, yıl sonu not hesaplama, final notu, quiz vize, sunum, Saklı Başarılar, not ortalaması">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://saklibasarilar.blogspot.com/2024/04/ydy-puan-hesaplama_70.html">
-
+  <title>DEÜ Not Hesaplama | Saklı Başarılar</title>
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #e0ecff, #ffffff);
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      padding: 20px;
+      padding: 40px 20px;
+      gap: 40px;
     }
+
+    .main-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: nowrap;
+      gap: 40px;
+      width: 100%;
+      max-width: 1300px;
+    }
+
     .container {
       background-color: #fff;
       border-radius: 12px;
-      padding: 30px 40px;
+      padding: 40px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      max-width: 800px;
-      width: 100%;
+      flex: 2;
+      max-width: 700px;
     }
-    h1, h2 {
+
+    .final-container {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 30px 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      flex: 1;
+      max-width: 350px;
+      height: fit-content;
+      align-self: center;
+    }
+
+    h1 {
       text-align: center;
       color: #004085;
+      margin-bottom: 20px;
+      font-size: 22px;
     }
+
+    h2 {
+      color: #0056b3;
+      margin-top: 20px;
+    }
+
     .inputs {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px 20px;
       margin-bottom: 30px;
     }
-    label { font-weight: 500; }
-    input, select {
+
+    label {
+      font-weight: 500;
+    }
+
+    input {
       padding: 6px 8px;
       width: 100%;
       border: 1px solid #ccc;
       border-radius: 6px;
     }
+
     button {
       display: block;
       margin: 0 auto;
@@ -58,137 +91,108 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-    button:hover { background-color: #0056b3; }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
     .result {
       text-align: center;
       font-size: 18px;
       font-weight: bold;
       margin-top: 20px;
     }
+
     p {
       text-align: center;
       font-size: 14px;
     }
-    a {
-      color: #007bff;
-      text-decoration: none;
-    }
-    a:hover { text-decoration: underline; }
-    #overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background-color: rgba(0, 0, 0, 0.75);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    #ad-content {
-      background-color: white;
-      padding: 10px;
-      border-radius: 10px;
-      max-width: 90%;
-      max-height: 90%;
-      position: relative;
-      text-align: center;
-    }
-    #ad-image {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-    #countdown {
-      position: absolute;
-      top: -35px;
-      right: 10px;
-      font-size: 28px;
-      color: #ff4444;
-    }
-    #close-btn {
-      display: none;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 28px;
-      background-color: transparent;
-      border: none;
-      color: #ff4444;
-      cursor: pointer;
-    }
-    #close-btn:hover { color: darkred; }
-    .commentbox {
-      margin-top: 40px;
-      max-width: 800px;
-      width: 100%;
+
+    @media screen and (max-width: 960px) {
+      body {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .main-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container, .final-container {
+        max-width: 95%;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>DEÜ Yıl Sonu Notu Hesaplama</h1>
-    <div style="text-align: center; margin-bottom: 20px;">
-      <label for="kurSec">Lütfen kurunuzu seçiniz: </label>
-      <select id="kurSec">
-        <option value="">-- Seçiniz --</option>
-        <option value="a">A Kur</option>
-        <option value="b">B Kur</option>
-        <option value="c">C Kur</option>
-      </select>
+  <div class="main-wrapper">
+
+    <!-- Sol taraf -->
+    <div class="container">
+      <h1>DEÜ Yıl Sonu Notu Hesaplama</h1>
+      <div class="inputs">
+        <h2>1. Dönem</h2><span></span>
+        <label>Quiz 1: <input type="number" id="q1_1" /></label>
+        <label>Quiz 2: <input type="number" id="q2_1" /></label>
+        <label>Vize 1: <input type="number" id="v1_1" /></label>
+        <label>Vize 2: <input type="number" id="v2_1" /></label>
+        <label>Sunum: <input type="number" id="sunum_1" /></label>
+        <label>Katılım: <input type="number" id="katilim_1" /></label>
+        <label>Online Ödev: <input type="number" id="odev_1" /></label>
+        <label>Writing: <input type="number" id="writing_1" /></label>
+      </div>
+
+      <div class="inputs">
+        <h2>2. Dönem</h2><span></span>
+        <label>Quiz 1: <input type="number" id="q1_2" /></label>
+        <label>Quiz 2: <input type="number" id="q2_2" /></label>
+        <label>Vize 1: <input type="number" id="v1_2" /></label>
+        <label>Vize 2: <input type="number" id="v2_2" /></label>
+        <label>Sunum: <input type="number" id="sunum_2" /></label>
+        <label>Katılım: <input type="number" id="katilim_2" /></label>
+        <label>Online Ödev: <input type="number" id="odev_2" /></label>
+        <label>Writing: <input type="number" id="writing_2" /></label>
+      </div>
+
+      <button onclick="alert('Hesaplama fonksiyonu henüz tanımlanmadı.')">Hesapla</button>
+      <p><strong>Not:</strong> 64.5 üstü notlar 65'e yuvarlandığı için geçme notu 64.5 olarak alınmıştır.</p>
+      <div id="result" class="result"></div>
     </div>
 
-    <div class="inputs">
-      <h2>1. Dönem</h2><span></span>
-      <label>Quiz 1: <input type="number" id="q1_1" min="0" max="100" /></label>
-      <label>Quiz 2: <input type="number" id="q2_1" min="0" max="100" /></label>
-      <label>Vize 1: <input type="number" id="v1_1" min="0" max="100" /></label>
-      <label>Vize 2: <input type="number" id="v2_1" min="0" max="100" /></label>
-      <label>Sunum: <input type="number" id="sunum_1" min="0" max="100" /></label>
-      <label>Katılım: <input type="number" id="katilim_1" min="0" max="100" /></label>
-      <label>Online Ödev: <input type="number" id="odev_1" min="0" max="100" /></label>
-      <label>Writing: <input type="number" id="writing_1" min="0" max="100" /></label>
+    <!-- Sağ taraf -->
+    <div class="final-container">
+      <h1>Final Ortalaması</h1>
+      <div class="inputs" style="display: block;">
+        <label>Yıl Sonu Notu:</label>
+        <input type="number" id="yearGrade" max="100" min="0">
+        <label>Final Notu:</label>
+        <input type="number" id="finalGrade" max="100" min="0">
+      </div>
+      <button onclick="calculateFinal()">Hesapla</button>
+      <div id="finalResult" class="result"></div>
     </div>
 
-    <div class="inputs">
-      <h2>2. Dönem</h2><span></span>
-      <label>Quiz 1: <input type="number" id="q1_2" min="0" max="100" /></label>
-      <label>Quiz 2: <input type="number" id="q2_2" min="0" max="100" /></label>
-      <label>Vize 1: <input type="number" id="v1_2" min="0" max="100" /></label>
-      <label>Vize 2: <input type="number" id="v2_2" min="0" max="100" /></label>
-      <label>Sunum: <input type="number" id="sunum_2" min="0" max="100" /></label>
-      <label>Katılım: <input type="number" id="katilim_2" min="0" max="100" /></label>
-      <label>Online Ödev: <input type="number" id="odev_2" min="0" max="100" /></label>
-      <label>Writing: <input type="number" id="writing_2" min="0" max="100" /></label>
-    </div>
-
-    <button onclick="calculate()">Hesapla</button>
-    <p><strong>Not:</strong> 64.5 üstü notlar 65'e yuvarlandığı için geçme notu 64.5 olarak alınmıştır.</p>
-    <p>Final notuyla birlikte ortalamanızı hesaplamak için <a href="https://saklibasarilar.blogspot.com/2024/05/deu-final-hesaplama_28.html?m=1">buraya tıklayınız</a>.</p>
-    <div id="result" class="result"></div>
   </div>
 
-  <div class="commentbox"></div>
-  <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
-  <script>commentBox('5724459575017472-proj');</script>
-
   <script>
-    function calculate() {
-      const kur = document.getElementById("kurSec").value;
-      if (!kur) return document.getElementById("result").textContent = "⚠️ Lütfen kurunuzu seçiniz.";
-
-      const get = id => parseFloat(document.getElementById(id).value) || 0;
-      function hesaplaDonem(q1, q2, v1, v2, sunum, katilim, odev, writing) {
-        const quizOrt = (get(q1) + get(q2)) / 2;
-        const vizeOrt = (get(v1) + get(v2)) / 2;
-        return (quizOrt * 0.2) + (vizeOrt * 0.6) + (get(sunum) * 0.05) + (get(writing) * 0.05) + (get(odev) * 0.05) + (get(katilim) * 0.05);
+    function calculateFinal() {
+      const yearGrade = parseFloat(document.getElementById('yearGrade').value);
+      const finalGrade = parseFloat(document.getElementById('finalGrade').value);
+      if (isNaN(yearGrade) || isNaN(finalGrade)) {
+        alert("Lütfen tüm alanları doldurun.");
+        return;
       }
-      const d1 = hesaplaDonem("q1_1", "q2_1", "v1_1", "v2_1", "sunum_1", "katilim_1", "odev_1", "writing_1");
-      const d2 = hesaplaDonem("q1_2", "q2_2", "v1_2", "v2_2", "sunum_2", "katilim_2", "odev_2", "writing_2");
-      const ort = (d1 + d2) / 2;
-      const not = Math.round(ort * 100) / 100;
-      const sinir = kur === 'a' ? 85 : kur === 'b' ? 80 : 75;
-      const mesaj = not >= sinir ? "✅ Hazırlığı geçtiniz 🎉" : "❗ Finale kaldınız";
-      document.getElementById("result").textContent = `Ortalamanız: ${not} - ${mesaj}`;
+
+      const yearWeighted = yearGrade * 0.4;
+      const finalWeighted = finalGrade * 0.6;
+      const overall = yearWeighted + finalWeighted;
+
+      const result = document.getElementById('finalResult');
+      result.innerHTML = `Yıl Sonu: ${yearGrade.toFixed(2)}<br>
+                          Final: ${finalGrade.toFixed(2)}<br>
+                          Ortalama: ${overall.toFixed(2)}`;
     }
   </script>
 </body>
