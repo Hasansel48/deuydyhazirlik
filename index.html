@@ -197,6 +197,45 @@
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
+    .menu-toggle {
+  font-size: 28px;
+  cursor: pointer;
+  margin-left: 25px;
+}
+
+.side-menu {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #333;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  z-index: 1500;
+}
+
+.side-menu a {
+  padding: 10px 30px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+.side-menu a:hover {
+  background-color: #575757;
+}
+
+.side-menu .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 36px;
+}
+
 </style>
   <script>
     function calculateYear() {
@@ -259,6 +298,13 @@
                          `Final: ${finalGrade.toFixed(2)}<br>` +
                          `Ortalama: ${overall.toFixed(2)}`;
     }
+    function openMenu() {
+    document.getElementById("sideMenu").style.width = "250px";
+  }
+
+  function closeMenu() {
+    document.getElementById("sideMenu").style.width = "0";
+  }
   </script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 </head>
@@ -268,6 +314,8 @@
     <div class="icons">
       <a href="https://www.linkedin.com/in/hasan-sel-54556122a/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
       <a href="mailto:slhsn48@gmail.com" title="Mail"><i class="fas fa-envelope"></i></a>
+      <span class="menu-toggle" onclick="openMenu()"><i class="fas fa-bars"></i></span>
+
     </div>
   </div>
 
@@ -323,6 +371,12 @@
     <script>commentBox('5724459575017472-proj');</script>
   </div>
 </div>
+</div>
+  <div id="sideMenu" class="side-menu">
+  <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
+  <a href="#">Ana Sayfa</a>
+  <a href="#">Not Hesaplama</a>
+  <a href="#">İletişim</a>
 </div>
         
 </body>
