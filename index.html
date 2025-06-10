@@ -201,6 +201,11 @@
   font-size: 28px;
   cursor: pointer;
   margin-left: 25px;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.2);
 }
 
 .side-menu {
@@ -209,32 +214,55 @@
   position: fixed;
   top: 0;
   right: 0;
-  background-color: #333;
+  background: linear-gradient(to bottom right, #212121, #424242);
+  color: #fff;
   overflow-x: hidden;
-  transition: 0.5s;
+  transition: width 0.5s ease;
   padding-top: 60px;
   z-index: 1500;
+  box-shadow: -3px 0 10px rgba(0, 0, 0, 0.4);
+  border-left: 2px solid #ff9800;
 }
 
-.side-menu a {
+.side-menu .menu-header {
   padding: 10px 30px;
-  text-decoration: none;
-  font-size: 20px;
-  color: white;
-  display: block;
-  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.side-menu a:hover {
-  background-color: #575757;
+.side-menu h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .side-menu .close-btn {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  font-size: 36px;
+  font-size: 32px;
+  cursor: pointer;
+  color: #ffccbc;
+  transition: color 0.3s ease;
 }
+
+.side-menu .close-btn:hover {
+  color: #fff;
+}
+
+.side-menu a {
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #eee;
+  display: block;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.side-menu a:hover {
+  background-color: #ff5722;
+  color: #fff;
+  transform: translateX(-5px);
+}
+
 
 </style>
   <script>
@@ -299,7 +327,7 @@
                          `Ortalama: ${overall.toFixed(2)}`;
     }
     function openMenu() {
-    document.getElementById("sideMenu").style.width = "250px";
+    document.getElementById("sideMenu").style.width = "260px";
   }
 
   function closeMenu() {
@@ -371,12 +399,17 @@
     <script>commentBox('5724459575017472-proj');</script>
   </div>
 </div>
-</div>
-  <div id="sideMenu" class="side-menu">
-  <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
-  <a href="#">Ana Sayfa</a>
-  <a href="#">Not Hesaplama</a>
-  <a href="#">İletişim</a>
+<!-- Menü Paneli (body içine, yorum kutusunun altına ya da en sona) -->
+<div id="sideMenu" class="side-menu">
+  <div class="menu-header">
+    <span class="close-btn" onclick="closeMenu()">&times;</span>
+    <h3>Menü</h3>
+  </div>
+  <a href="/">🏠 Ana Sayfa</a>
+  <a href="#result">📊 Not Hesaplama</a>
+  <a href="#finalResult">🧮 Final Hesaplama</a>
+  <a href="#yorumlar">💬 Yorumlar</a>
+  <a href="mailto:slhsn48@gmail.com">📧 Mail Gönder</a>
 </div>
         
 </body>
