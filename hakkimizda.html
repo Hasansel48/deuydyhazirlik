@@ -8,8 +8,24 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
+  <!-- Tema (header, menü, footer) -->
   <div id="template"></div>
-   <script>
+
+  <!-- Sayfaya özel içerik -->
+  <main class="main-wrapper" style="padding: 40px 20px;">
+    <div style="max-width: 900px; margin: 0 auto; background: white; border-radius: 12px; padding: 40px; box-shadow: 0 0 20px rgba(0,0,0,0.1);">
+      <h2 style="text-align: center; color: #1a237e; margin-bottom: 20px;">Hakkımızda</h2>
+      <p style="font-size: 18px; line-height: 1.7; color: #444;">
+        <strong>Fakirüni</strong>, üniversite öğrencilerinin ihtiyaç duyduğu pratik hesaplama araçlarını ve bot sistemlerini sunmak üzere kurulmuş bağımsız bir projedir. Özellikle DEÜ hazırlık öğrencilerine not hesaplama desteği ile başlamış, zamanla genişleyerek farklı araçlar ve içeriklerle büyümüştür.
+      </p>
+      <p style="font-size: 18px; line-height: 1.7; margin-top: 20px; color: #444;">
+        Amacımız; kullanıcı dostu, hızlı ve ücretsiz araçlarla öğrenci hayatını kolaylaştırmak. Geliştirme süreci hâlâ devam etmekte olup, önerilere açığız. İletişim kurmak için <a href="mailto:slhsn48@gmail.com" style="color: #0072ff;">e-posta gönderebilirsiniz</a>.
+      </p>
+    </div>
+  </main>
+
+  <!-- JavaScript: tema fetch -->
+  <script>
     fetch('layout.html')
       .then(res => res.text())
       .then(data => {
@@ -26,19 +42,5 @@
         document.body.appendChild(script);
       });
   </script>
-
-  <div class="main-wrapper">
-    <div style="max-width: 900px; margin: 0 auto; background: white; border-radius: 12px; padding: 40px; box-shadow: 0 0 20px rgba(0,0,0,0.1);">
-      <h2 style="text-align: center; color: #1a237e; margin-bottom: 20px;">Hakkımızda</h2>
-      <p style="font-size: 18px; line-height: 1.7; color: #444;">
-        <strong>Fakirüni</strong>, üniversite öğrencilerinin ihtiyaç duyduğu pratik hesaplama araçlarını ve bot sistemlerini sunmak üzere kurulmuş bağımsız bir projedir. Özellikle DEÜ hazırlık öğrencilerine not hesaplama desteği ile başlamış, zamanla genişleyerek farklı araçlar ve içeriklerle büyümüştür.
-      </p>
-      <p style="font-size: 18px; line-height: 1.7; margin-top: 20px; color: #444;">
-        Amacımız; kullanıcı dostu, hızlı ve ücretsiz araçlarla öğrenci hayatını kolaylaştırmak. Geliştirme süreci hâlâ devam etmekte olup, önerilere açığız. İletişim kurmak için <a href="mailto:slhsn48@gmail.com" style="color: #0072ff;">e-posta gönderebilirsiniz</a>.
-      </p>
-    </div>
-  </div>
-
- 
 </body>
 </html>
