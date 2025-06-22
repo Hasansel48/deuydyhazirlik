@@ -6,20 +6,61 @@
   <title>Hakkımızda - Fakirüni</title>
   <link rel="icon" href="/favicon.ico" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f4f4f4, #f0f2f5);
+      margin: 0;
+    }
+
+    main {
+      flex: 1;
+      padding: 40px 20px;
+    }
+
+    .content-box {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    .content-box h2 {
+      text-align: center;
+      color: #1a237e;
+      margin-bottom: 20px;
+    }
+
+    .content-box p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .content-box a {
+      color: #0072ff;
+    }
+  </style>
 </head>
 <body>
   <!-- Tema (header, menü, footer) -->
   <div id="template"></div>
 
   <!-- Sayfaya özel içerik -->
-  <main class="main-wrapper" style="padding: 40px 20px;">
-    <div style="max-width: 900px; margin: 0 auto; background: white; border-radius: 12px; padding: 40px; box-shadow: 0 0 20px rgba(0,0,0,0.1);">
-      <h2 style="text-align: center; color: #1a237e; margin-bottom: 20px;">Hakkımızda</h2>
-      <p style="font-size: 18px; line-height: 1.7; color: #444;">
+  <main>
+    <div class="content-box">
+      <h2>Hakkımızda</h2>
+      <p>
         <strong>Fakirüni</strong>, üniversite öğrencilerinin ihtiyaç duyduğu pratik hesaplama araçlarını ve bot sistemlerini sunmak üzere kurulmuş bağımsız bir projedir. Özellikle DEÜ hazırlık öğrencilerine not hesaplama desteği ile başlamış, zamanla genişleyerek farklı araçlar ve içeriklerle büyümüştür.
       </p>
-      <p style="font-size: 18px; line-height: 1.7; margin-top: 20px; color: #444;">
-        Amacımız; kullanıcı dostu, hızlı ve ücretsiz araçlarla öğrenci hayatını kolaylaştırmak. Geliştirme süreci hâlâ devam etmekte olup, önerilere açığız. İletişim kurmak için <a href="mailto:slhsn48@gmail.com" style="color: #0072ff;">e-posta gönderebilirsiniz</a>.
+      <p style="margin-top: 20px;">
+        Amacımız; kullanıcı dostu, hızlı ve ücretsiz araçlarla öğrenci hayatını kolaylaştırmak. Geliştirme süreci hâlâ devam etmekte olup, önerilere açığız. İletişim kurmak için <a href="mailto:slhsn48@gmail.com">e-posta gönderebilirsiniz</a>.
       </p>
     </div>
   </main>
