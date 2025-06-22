@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fakirüni Tema Şablonu</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f4f4f4, #f0f2f5);
+      min-height: 100vh;
+      padding-top: 100px;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(to right, #ff9800, #f44336);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 36px;
+      font-weight: 900;
+      color: #fff8dc;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+
+    .menu-toggle {
+      font-size: 28px;
+      cursor: pointer;
+      margin-left: 25px;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-toggle:hover {
+      transform: scale(1.2);
+    }
+
+    .side-menu {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      right: 0;
+      background: linear-gradient(to bottom right, #212121, #424242);
+      color: #fff;
+      overflow-x: hidden;
+      transition: width 0.5s ease;
+      padding-top: 60px;
+      z-index: 1500;
+      box-shadow: -3px 0 10px rgba(0, 0, 0, 0.4);
+      border-left: 2px solid #ff9800;
+    }
+
+    .side-menu .menu-header {
+      padding: 10px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .side-menu h3 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .side-menu .close-btn {
+      font-size: 32px;
+      cursor: pointer;
+      color: #ffccbc;
+      transition: color 0.3s ease;
+    }
+
+    .side-menu .close-btn:hover {
+      color: #fff;
+    }
+
+    .side-menu a {
+      padding: 15px 30px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #eee;
+      display: block;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .side-menu a:hover {
+      background-color: #ff5722;
+      color: #fff;
+      transform: translateX(-5px);
+    }
+
+    footer {
+      background-color: #212121;
+      color: #ccc;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .footer-content .social-icons a {
+      font-size: 24px;
+      color: #ffa726;
+      margin: 0 15px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-content .social-icons a:hover {
+      color: #fff;
+    }
+
+    .footer-content p {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8066385782862940" crossorigin="anonymous"></script>
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b6d0402e-c1fd-48b2-bf9a-39dbd24ba81f" type="text/javascript" async></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RLX3480SHS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RLX3480SHS');
+  </script>
+</head>
+<body>
+  <div class="header">
+    <h1>Fakirüni</h1>
+    <span class="menu-toggle" onclick="openMenu()"><i class="fas fa-bars"></i></span>
+  </div>
+
+  <div id="sideMenu" class="side-menu">
+    <div class="menu-header">
+      <span class="close-btn" onclick="closeMenu()">&times;</span>
+      <h3>Menü</h3>
+    </div>
+    <a href="/">🏠 Ana Sayfa</a>
+    <a href="/hakkimizda.html">ℹ️ Hakkımızda</a>
+    <a href="/hesaplama.html">🛠️ Hesaplama Araçlarımız</a>
+    <a href="/telegram-botlar.html">🤖 Telegram Botlarımız</a>
+    <a href="mailto:slhsn48@gmail.com">📧 İletişim</a>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="social-icons">
+        <a href="mailto:slhsn48@gmail.com" title="E-posta"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/hasan-sel-54556122a/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://fakiruni.xyz" title="Web"><i class="fas fa-globe"></i></a>
+      </div>
+      <p>© 2025 Fakirüni | Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
+
+  <script>
+    function openMenu() {
+      document.getElementById("sideMenu").style.width = "260px";
+    }
+    function closeMenu() {
+      document.getElementById("sideMenu").style.width = "0";
+    }
+  </script>
+</body>
+</html>
