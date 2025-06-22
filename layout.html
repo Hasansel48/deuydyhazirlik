@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fakirüni Tema Şablonu</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <title>Fakirüni Tema</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
@@ -20,7 +19,8 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(to right, #f4f4f4, #f0f2f5);
       min-height: 100vh;
-      padding-top: 100px;
+      display: flex;
+      flex-direction: column;
     }
 
     .header {
@@ -49,7 +49,6 @@
     .menu-toggle {
       font-size: 28px;
       cursor: pointer;
-      margin-left: 25px;
       transition: transform 0.3s ease;
     }
 
@@ -117,6 +116,7 @@
       color: #ccc;
       padding: 30px 20px;
       text-align: center;
+      margin-top: auto;
     }
 
     .footer-content {
@@ -140,15 +140,6 @@
       font-size: 14px;
     }
   </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8066385782862940" crossorigin="anonymous"></script>
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b6d0402e-c1fd-48b2-bf9a-39dbd24ba81f" type="text/javascript" async></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RLX3480SHS"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-RLX3480SHS');
-  </script>
 </head>
 <body>
   <div class="header">
@@ -158,8 +149,8 @@
 
   <div id="sideMenu" class="side-menu">
     <div class="menu-header">
-      <span class="close-btn" onclick="closeMenu()">&times;</span>
       <h3>Menü</h3>
+      <span class="close-btn" onclick="closeMenu()">&times;</span>
     </div>
     <a href="/">🏠 Ana Sayfa</a>
     <a href="/hakkimizda.html">ℹ️ Hakkımızda</a>
@@ -171,9 +162,9 @@
   <footer>
     <div class="footer-content">
       <div class="social-icons">
-        <a href="mailto:slhsn48@gmail.com" title="E-posta"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.linkedin.com/in/hasan-sel-54556122a/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://fakiruni.xyz" title="Web"><i class="fas fa-globe"></i></a>
+        <a href="mailto:slhsn48@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/hasan-sel-54556122a/"><i class="fab fa-linkedin"></i></a>
+        <a href="https://fakiruni.xyz"><i class="fas fa-globe"></i></a>
       </div>
       <p>© 2025 Fakirüni | Tüm hakları saklıdır.</p>
     </div>
