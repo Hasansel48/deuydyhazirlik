@@ -206,6 +206,7 @@
       </div>
     </div>
   </div>
+   <div id="footer"></div>
 
   <!-- Tema yükleme -->
   <script>
@@ -274,6 +275,11 @@
       document.getElementById('finalResult').innerHTML =
         `Yıl Sonu: ${yearGrade.toFixed(2)}<br>Final: ${finalGrade.toFixed(2)}<br>Ortalama: ${overall.toFixed(2)}`;
     }
+     fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
   </script>
 </body>
 </html>
