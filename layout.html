@@ -7,7 +7,7 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
     * {
       margin: 0;
@@ -16,8 +16,9 @@
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #f4f4f4, #f0f2f5);
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -28,27 +29,26 @@
       top: 0;
       left: 0;
       width: 100%;
-      background: linear-gradient(to right, #ff9800, #f44336);
+      background-color: #1f2937;
       color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
+      padding: 16px 32px;
       z-index: 1000;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     }
 
     .header h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: 36px;
-      font-weight: 900;
-      color: #fff8dc;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+      font-size: 28px;
+      font-weight: 700;
+      color: #facc15;
     }
 
     .menu-toggle {
-      font-size: 28px;
+      font-size: 26px;
       cursor: pointer;
+      color: #facc15;
       transition: transform 0.3s ease;
     }
 
@@ -62,56 +62,53 @@
       position: fixed;
       top: 0;
       right: 0;
-      background: linear-gradient(to bottom right, #212121, #424242);
+      background-color: #111827;
       color: #fff;
       overflow-x: hidden;
-      transition: width 0.5s ease;
+      transition: width 0.4s ease;
       padding-top: 60px;
       z-index: 1500;
-      box-shadow: -3px 0 10px rgba(0, 0, 0, 0.4);
-      border-left: 2px solid #ff9800;
+      border-left: 2px solid #facc15;
     }
 
     .side-menu .menu-header {
-      padding: 10px 30px;
+      padding: 10px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
     .side-menu h3 {
-      margin: 0;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 600;
     }
 
     .side-menu .close-btn {
-      font-size: 32px;
+      font-size: 28px;
       cursor: pointer;
-      color: #ffccbc;
+      color: #facc15;
       transition: color 0.3s ease;
     }
 
     .side-menu .close-btn:hover {
-      color: #fff;
+      color: #ffffff;
     }
 
     .side-menu a {
-      padding: 15px 30px;
+      padding: 14px 24px;
       text-decoration: none;
-      font-size: 18px;
-      color: #eee;
+      font-size: 17px;
+      color: #e5e7eb;
       display: block;
-      transition: background 0.3s, transform 0.2s;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: background 0.3s, padding-left 0.3s;
     }
 
     .side-menu a:hover {
-      background-color: #ff5722;
-      color: #fff;
-      transform: translateX(-5px);
+      background-color: #374151;
+      padding-left: 30px;
+      color: #facc15;
     }
-
-  
   </style>
 </head>
 <body>
