@@ -1,0 +1,767 @@
+[
+  
+  {
+    "isim": "Acıbadem Mehmet Ali Aydınlar Üniversitesi",
+    "lat": 40.9253,
+    "lon": 29.1544,
+    "dersler": [
+    {
+      "isim": "Fizik",
+      "durum": "Açık",
+      "tarih": "1 Temmuz - 15 Ağustos",
+      "icerik": "Klasik mekanik, elektromanyetizma, modern fizik",
+      "kaynak": "Serway Physics"
+    },
+    {
+      "isim": "Kimya",
+      "durum": "Açık",
+      "tarih": "1 Temmuz - 10 Ağustos",
+      "icerik": "Organik, inorganik ve analitik kimya konuları",
+      "kaynak": "Petrucci General Chemistry"
+    },
+    {
+      "isim": "Biyoloji",
+      "durum": "Kontenjan dolu",
+      "tarih": "3 Temmuz - 12 Ağustos",
+      "icerik": "Hücre biyolojisi, genetik ve evrim",
+      "kaynak": "Campbell Biology"
+    }
+  ]
+  },
+  {
+    "isim": "Aydın Adnan Menderes Üniversitesi",
+    "lat": 37.8444,
+    "lon": 27.8456
+  },
+  {
+    "isim": "Gaziantep İslam Bilim ve Teknoloji Üniversitesi",
+    "lat": 37.3004,
+    "lon": 36.9781
+  },
+  {
+    "isim": "Isparta Uygulamalı Bilimler Üniversitesi",
+    "lat": 37.7613,
+    "lon": 30.5470
+  },
+  {
+    "isim": "İstanbul Galata Üniversitesi",
+    "lat": 41.0151,
+    "lon": 28.9795
+  },
+  {
+    "isim": "Kahramanmaraş İstiklal Üniversitesi",
+    "lat": 37.5760,
+    "lon": 36.9356
+  },
+  {
+    "isim": "Kırşehir Ahi Evran Üniversitesi",
+    "lat": 39.1425,
+    "lon": 34.1600
+  },
+  {
+    "isim": "Tokat Gaziosmanpaşa Üniversitesi",
+    "lat": 40.3088,
+    "lon": 36.5541
+  },
+
+
+  {
+    "isim": "Abant İzzet Baysal Üniversitesi",
+    "lat": "40.7166979",
+    "lon": "31.5271807",
+    "resim": "/static/gorseller/abantizzet.jpg"
+  },
+  {
+    "isim": "Abdullah Gül Üniversitesi",
+    "lat": "38.6817463",
+    "lon": "35.6117907",
+    "resim": "/static/gorseller/abdullahgul.jpg"
+  },
+  {
+    "isim": "Adana Alparslan Türkeş Bilim ve Teknoloji Üniversitesi",
+    "lat": "37.0438848",
+    "lon": "35.3874917",
+    "resim": "/static/gorseller/alparslan.jpg"
+  },
+  {
+    "isim": "Adıyaman Üniversitesi",
+    "lat": "37.747s2037",
+    "lon": "38.2278524",
+    "resim": "/static/gorseller/adiyaman.jpg"
+  },
+  {
+    "isim": "Afyon Kocatepe Üniversitesi",
+    "lat": "38.8323258",
+    "lon": "30.5290811"
+  },
+  {
+    "isim": "Afyonkarahisar Sağlık Bilimleri Üniversitesi",
+    "lat": "38.7841860",
+    "lon": "30.4667758"
+  },
+  {
+    "isim": "Ağrı İbrahim Çeçen Üniversitesi",
+    "lat": "39.7228666",
+    "lon": "42.9934377"
+  },
+  {
+    "isim": "Aksaray Üniversitesi",
+    "lat": "38.3313453",
+    "lon": "33.9923960"
+  },
+  {
+    "isim": "Alanya Alaaddin Keykubat Üniversitesi",
+    "lat": "36.5265391",
+    "lon": "32.0844180"
+  },
+  {
+    "isim": "Amasya Üniversitesi",
+    "lat": "40.6545210",
+    "lon": "35.8057837"
+  },
+  {
+    "isim": "Anadolu Üniversitesi",
+    "lat": "39.7918989",
+    "lon": "30.5005231"
+  },
+  {
+    "isim": "Ankara Hacı Bayram Veli Üniversitesi",
+    "lat": "40.0085665",
+    "lon": "32.8937146"
+  },
+  {
+    "isim": "Ankara Müzik ve Güzel Sanatlar Üniversitesi",
+    "lat": "39.8581269",
+    "lon": "32.8456266"
+  },
+  {
+    "isim": "Ankara Sosyal Bilimler Üniversitesi",
+    "lat": "39.9433892",
+    "lon": "32.8557747"
+  },
+  {
+    "isim": "Ankara Üniversitesi",
+    "lat": "40.1311453",
+    "lon": "32.9512024"
+  },
+  {
+    "isim": "Ankara Yıldırım Beyazıt Üniversitesi",
+    "lat": "40.1311453",
+    "lon": "32.9512024"
+  },
+  {
+    "isim": "Antalya Bilim Üniversitesi",
+    "lat": "37.0525596",
+    "lon": "30.6251473"
+  },
+  {
+    "isim": "Ardahan Üniversitesi",
+    "lat": "41.1324296",
+    "lon": "42.7809261"
+  },
+  {
+    "isim": "Artvin Çoruh Üniversitesi",
+    "lat": "41.1851034",
+    "lon": "41.8323781"
+  },
+  {
+    "isim": "Atatürk Üniversitesi",
+    "lat": "39.9018130",
+    "lon": "41.2334327"
+  },
+  {
+    "isim": "Atılım Üniversitesi",
+    "lat": "39.8150205",
+    "lon": "32.7266048"
+  },
+  {
+    "isim": "Avrasya Üniversitesi",
+    "lat": "40.9846519",
+    "lon": "39.8271075"
+  },
+  {
+    "isim": "Ağrı İbrahim Çeçen Üniversitesi",
+    "lat": "39.7228666",
+    "lon": "42.9934377"
+  },
+  {
+    "isim": "Balıkesir Üniversitesi",
+    "lat": "39.5418043",
+    "lon": "28.0074147"
+  },
+  {
+    "isim": "Bandırma Onyedi Eylül Üniversitesi",
+    "lat": "40.3352584",
+    "lon": "27.9360984"
+  },
+  {
+    "isim": "Bartın Üniversitesi",
+    "lat": "41.6000530",
+    "lon": "32.3458559"
+  },
+  {
+    "isim": "Batman Üniversitesi",
+    "lat": "37.7823643",
+    "lon": "41.0688285"
+  },
+  {
+    "isim": "Bayburt Üniversitesi",
+    "lat": "40.2505534",
+    "lon": "40.1858072"
+  },
+  {
+    "isim": "Başkent Üniversitesi",
+    "lat": "39.8875015",
+    "lon": "32.6548105"
+  },
+  {
+    "isim": "Beykent Üniversitesi",
+    "lat": "41.1170421",
+    "lon": "29.0014683"
+  },
+  {
+    "isim": "Beykoz Üniversitesi",
+    "lat": "41.0919460",
+    "lon": "29.0942741"
+  },
+  {
+    "isim": "Bezmialem Vakıf Üniversitesi",
+    "lat": "41.0182144",
+    "lon": "28.9364944"
+  },
+  {
+    "isim": "Bilecik Şeyh Edebali Üniversitesi",
+    "lat": "40.1900369",
+    "lon": "29.9668186"
+  },
+  {
+    "isim": "Bingöl Üniversitesi",
+    "lat": "38.9008748",
+    "lon": "40.4854983"
+  },
+  {
+    "isim": "Biruni Üniversitesi",
+    "lat": "41.0045247",
+    "lon": "28.9205982"
+  },
+  {
+    "isim": "Bitlis Eren Üniversitesi",
+    "lat": "38.4814015",
+    "lon": "42.1582309"
+  },
+  {
+    "isim": "Boğaziçi Üniversitesi",
+    "lat": "41.0844751",
+    "lon": "29.0535915"
+  },
+  {
+    "isim": "Bolu Abant İzzet Baysal Üniversitesi",
+    "lat": "40.7384598",
+    "lon": "31.6017635"
+  },
+  {
+    "isim": "Bursa Teknik Üniversitesi",
+    "lat": "40.1887444",
+    "lon": "29.1309241"
+  },
+  {
+    "isim": "Bursa Uludağ Üniversitesi",
+    "lat": "40.2389670",
+    "lon": "28.8697527"
+  },
+  {
+    "isim": "Çanakkale Onsekiz Mart Üniversitesi",
+    "lat": "40.1120066",
+    "lon": "26.4214648"
+  },
+  {
+    "isim": "Çankaya Üniversitesi",
+    "lat": "39.8201934",
+    "lon": "32.5626928"
+  },
+  {
+    "isim": "Çankırı Karatekin Üniversitesi",
+    "lat": "40.6225259",
+    "lon": "33.6192821"
+  },
+  {
+    "isim": "Çukurova Üniversitesi",
+    "lat": "37.0500064",
+    "lon": "35.3594026"
+  },
+  {
+    "isim": "Dicle Üniversitesi",
+    "lat": "37.9044835",
+    "lon": "40.2749929"
+  },
+  {
+    "isim": "Dokuz Eylül Üniversitesi",
+    "lat": "38.37081074333232",
+    "lon": "27.2055465519626"
+  },
+  {
+    "isim": "Düzce Üniversitesi",
+    "lat": "40.9058073",
+    "lon": "31.1805369"
+  },
+  {
+    "isim": "Ege Üniversitesi",
+    "lat": "38.4556928",
+    "lon": "27.2281857"
+  },
+  {
+    "isim": "Erciyes Üniversitesi",
+    "lat": "38.7073914",
+    "lon": "35.5337566"
+  },
+  {
+    "isim": "Erzincan Binali Yıldırım Üniversitesi",
+    "lat": "39.8055155",
+    "lon": "39.3763503"
+  },
+  {
+    "isim": "Erzurum Teknik Üniversitesi",
+    "lat": "39.9233115",
+    "lon": "41.2248762"
+  },
+  {
+    "isim": "Eskişehir Osmangazi Üniversitesi",
+    "lat": "39.7485483",
+    "lon": "30.4761351"
+  },
+  {
+    "isim": "Eskişehir Teknik Üniversitesi",
+    "lat": "39.8168591",
+    "lon": "30.5317448"
+  },
+  {
+    "isim": "Fırat Üniversitesi",
+    "lat": "38.6837474",
+    "lon": "39.1871000"
+  },
+  {
+    "isim": "Galatasaray Üniversitesi",
+    "lat": "41.0459923",
+    "lon": "29.0204624"
+  },
+  {
+    "isim": "Gazi Üniversitesi",
+    "lat": "39.9395363",
+    "lon": "32.8205416"
+  },
+  {
+    "isim": "Gaziantep Üniversitesi",
+    "lat": "37.0341546",
+    "lon": "37.3172044"
+  },
+  {
+    "isim": "Gebze Teknik Üniversitesi",
+    "lat": "40.8114611",
+    "lon": "29.3602715"
+  },
+  {
+    "isim": "Giresun Üniversitesi",
+    "lat": "40.8980471",
+    "lon": "38.4379775"
+  },
+  {
+    "isim": "Gümüşhane Üniversitesi",
+    "lat": "40.4381838",
+    "lon": "39.5175457"
+  },
+  {
+    "isim": "Hacettepe Üniversitesi",
+    "lat": "39.8674482",
+    "lon": "32.7353845"
+  },
+  {
+    "isim": "Hakkari Üniversitesi",
+    "lat": "37.5721902",
+    "lon": "43.7532904"
+  },
+  {
+    "isim": "Harran Üniversitesi",
+    "lat": "37.1555175",
+    "lon": "38.7967781"
+  },
+  {
+    "isim": "Hasan Kalyoncu Üniversitesi",
+    "lat": "37.0058476",
+    "lon": "37.4377769"
+  },
+  {
+    "isim": "Hatay Mustafa Kemal Üniversitesi",
+    "lat": "36.9093126",
+    "lon": "36.2283971"
+  },
+  {
+    "isim": "Hitit Üniversitesi",
+    "lat": "40.5718837",
+    "lon": "34.9839750"
+  },
+  {
+    "isim": "Iğdır Üniversitesi",
+    "lat": "39.8120396",
+    "lon": "44.0741718"
+  },
+  {
+    "isim": "İnönü Üniversitesi",
+    "lat": "38.3298958",
+    "lon": "38.4374387"
+  },
+  {
+    "isim": "İskenderun Teknik Üniversitesi",
+    "lat": "36.5779100",
+    "lon": "36.1513847"
+  },
+  {
+    "isim": "İstanbul Arel Üniversitesi",
+    "lat": "41.0551435",
+    "lon": "28.5004754"
+  },
+  {
+    "isim": "İstanbul Aydın Üniversitesi",
+    "lat": "40.9916257",
+    "lon": "28.7967971"
+  },
+  {
+    "isim": "İstanbul Bilgi Üniversitesi",
+    "lat": "41.0646978",
+    "lon": "28.9466615"
+  },
+  {
+    "isim": "İstanbul Gelişim Üniversitesi",
+    "lat": "40.9938018",
+    "lon": "28.7000342"
+  },
+  {
+    "isim": "İstanbul Kent Üniversitesi",
+    "lat": "41.0332393",
+    "lon": "28.9844947"
+  },
+  {
+    "isim": "İstanbul Kültür Üniversitesi",
+    "lat": "40.9912276",
+    "lon": "28.8320899"
+  },
+  {
+    "isim": "İstanbul Medeniyet Üniversitesi",
+    "lat": "40.9948888",
+    "lon": "29.0661801"
+  },
+  {
+    "isim": "İstanbul Medipol Üniversitesi",
+    "lat": "41.0911385",
+    "lon": "29.0916743"
+  },
+  {
+    "isim": "İstanbul Rumeli Üniversitesi",
+    "lat": "41.0786557",
+    "lon": "28.2698742"
+  },
+  {
+    "isim": "İstanbul Sabahattin Zaim Üniversitesi",
+    "lat": "41.0231761",
+    "lon": "29.0463679"
+  },
+  {
+    "isim": "İstanbul Teknik Üniversitesi",
+    "lat": "41.1050465",
+    "lon": "29.0263114"
+  },
+  {
+    "isim": "İstanbul Ticaret Üniversitesi",
+    "lat": "40.9525743",
+    "lon": "29.1196499"
+  },
+  {
+    "isim": "İstanbul Üniversitesi",
+    "lat": "41.0132424",
+    "lon": "28.9637609"
+  },
+  {
+    "isim": "İstanbul Yeni Yüzyıl Üniversitesi",
+    "lat": "41.0159187",
+    "lon": "28.9066445"
+  },
+  {
+    "isim": "İzmir Bakırçay Üniversitesi",
+    "lat": "38.5811252",
+    "lon": "26.9634248"
+  },
+  {
+    "isim": "İzmir Demokrasi Üniversitesi",
+    "lat": "38.3934871",
+    "lon": "27.0736037"
+  },
+  {
+    "isim": "İzmir Ekonomi Üniversitesi",
+    "lat": "38.3884614",
+    "lon": "27.0445978"
+  },
+  {
+    "isim": "İzmir Katip Çelebi Üniversitesi",
+    "lat": "38.5123229",
+    "lon": "27.0313000"
+  },
+  {
+    "isim": "İzmir Yüksek Teknoloji Enstitüsü",
+    "lat": "38.3226588",
+    "lon": "26.6377295"
+  },
+  {
+    "isim": "Kadir Has Üniversitesi",
+    "lat": "41.0519289",
+    "lon": "28.3805077"
+  },
+  {
+    "isim": "Kahramanmaraş Sütçü İmam Üniversitesi",
+    "lat": "37.5885518",
+    "lon": "36.8189117"
+  },
+  {
+    "isim": "Karabük Üniversitesi",
+    "lat": "41.2072548",
+    "lon": "32.6583796"
+  },
+  {
+    "isim": "Karadeniz Teknik Üniversitesi",
+    "lat": "40.9936414",
+    "lon": "39.7740298"
+  },
+  {
+    "isim": "Karamanoğlu Mehmetbey Üniversitesi",
+    "lat": "37.1725771",
+    "lon": "33.2584112"
+  },
+  {
+    "isim": "Kars Kafkas Üniversitesi",
+    "lat": "40.5993365",
+    "lon": "43.0988095"
+  },
+  {
+    "isim": "Kastamonu Üniversitesi",
+    "lat": "41.4333836",
+    "lon": "33.7650975"
+  },
+  {
+    "isim": "Kayseri Üniversitesi",
+    "lat": "38.7132000",
+    "lon": "35.5531974"
+  },
+  {
+    "isim": "Kırklareli Üniversitesi",
+    "lat": "41.7924246",
+    "lon": "27.1644688"
+  },
+  {
+    "isim": "Kilis 7 Aralık Üniversitesi",
+    "lat": "36.7177725",
+    "lon": "37.1237456"
+  },
+  {
+    "isim": "Kocaeli Üniversitesi",
+    "lat": "40.8211811",
+    "lon": "29.9214007"
+  },
+  {
+    "isim": "Konya Gıda ve Tarım Üniversitesi",
+    "lat": "37.8746284",
+    "lon": "32.4739562"
+  },
+  {
+    "isim": "Konya Teknik Üniversitesi",
+    "lat": "38.0063993",
+    "lon": "32.5152564"
+  },
+  {
+    "isim": "KTO Karatay Üniversitesi",
+    "lat": "37.8651565",
+    "lon": "32.5369366"
+  },
+  {
+    "isim": "Malatya Turgut Özal Üniversitesi",
+    "lat": "38.4654282",
+    "lon": "38.3570267"
+  },
+  {
+    "isim": "Manisa Celal Bayar Üniversitesi",
+    "lat": "38.6788731",
+    "lon": "27.3086510"
+  },
+  {
+    "isim": "Mardin Artuklu Üniversitesi",
+    "lat": "37.3473593",
+    "lon": "40.6428911"
+  },
+  {
+    "isim": "Marmara Üniversitesi",
+    "lat": "40.9872142",
+    "lon": "29.0529560"
+  },
+  {
+    "isim": "Mersin Üniversitesi",
+    "lat": "36.7860907",
+    "lon": "34.5310788"
+  },
+  {
+    "isim": "Mimar Sinan Güzel Sanatlar Üniversitesi",
+    "lat": "41.0300797",
+    "lon": "28.9891205"
+  },
+  {
+    "isim": "Muğla Sıtkı Koçman Üniversitesi",
+    "lat": "37.1670706",
+    "lon": "28.3745291"
+  },
+  {
+    "isim": "Munzur Üniversitesi",
+    "lat": "39.0448528",
+    "lon": "39.5122864"
+  },
+  {
+    "isim": "Mustafa Kemal Üniversitesi",
+    "lat": "36.3316078",
+    "lon": "36.1950656"
+  },
+  {
+    "isim": "Nevşehir Hacı Bektaş Veli Üniversitesi",
+    "lat": "38.6782039",
+    "lon": "34.7369901"
+  },
+  {
+    "isim": "Niğde Ömer Halisdemir Üniversitesi",
+    "lat": "37.9698744",
+    "lon": "34.6463985"
+  },
+  {
+    "isim": "Nişantaşı Üniversitesi",
+    "lat": "41.0521088",
+    "lon": "28.9850651"
+  },
+  {
+    "isim": "Ondokuz Mayıs Üniversitesi",
+    "lat": "41.3682047",
+    "lon": "36.1980326"
+  },
+  {
+    "isim": "Ordu Üniversitesi",
+    "lat": "40.9740590",
+    "lon": "37.9705947"
+  },
+  {
+    "isim": "Osmaniye Korkut Ata Üniversitesi",
+    "lat": "37.0426791",
+    "lon": "36.2244885"
+  },
+  {
+    "isim": "Pamukkale Üniversitesi",
+    "lat": "37.7395649",
+    "lon": "29.1018659"
+  },
+  {
+    "isim": "Recep Tayyip Erdoğan Üniversitesi",
+    "lat": "41.0374977",
+    "lon": "40.4931063"
+  },
+  {
+    "isim": "Sakarya Üniversitesi",
+    "lat": "40.7421339",
+    "lon": "30.3310070"
+  },
+  {
+    "isim": "Samsun Üniversitesi",
+    "lat": "41.2326118",
+    "lon": "36.3701294"
+  },
+  {
+    "isim": "Selçuk Üniversitesi",
+    "lat": "38.0242068",
+    "lon": "32.5057052"
+  },
+  {
+    "isim": "Siirt Üniversitesi",
+    "lat": "37.9360674",
+    "lon": "41.9406919"
+  },
+  {
+    "isim": "Sinop Üniversitesi",
+    "lat": "42.0096692",
+    "lon": "35.0724083"
+  },
+  {
+    "isim": "Sivas Cumhuriyet Üniversitesi",
+    "lat": "39.7064855",
+    "lon": "37.0265587"
+  },
+  {
+    "isim": "Süleyman Demirel Üniversitesi",
+    "lat": "37.8379544",
+    "lon": "30.5350457"
+  },
+  {
+    "isim": "Şırnak Üniversitesi",
+    "lat": "37.5025707",
+    "lon": "42.4265426"
+  },
+  {
+    "isim": "Tekirdağ Namık Kemal Üniversitesi",
+    "lat": "40.9952394",
+    "lon": "27.5895882"
+  },
+  {
+    "isim": "Trakya Üniversitesi",
+    "lat": "41.6792713",
+    "lon": "26.5602629"
+  },
+  {
+    "isim": "Trabzon Üniversitesi",
+    "lat": "41.0207492",
+    "lon": "39.5728411"
+  },
+  {
+    "isim": "Tunceli Munzur Üniversitesi",
+    "lat": "39.0448528",
+    "lon": "39.5122864"
+  },
+  {
+    "isim": "Türk-Alman Üniversitesi",
+    "lat": "41.1438395",
+    "lon": "29.1009316"
+  },
+  {
+    "isim": "Uşak Üniversitesi",
+    "lat": "38.6709008",
+    "lon": "29.3275922"
+  },
+  {
+    "isim": "Van Yüzüncü Yıl Üniversitesi",
+    "lat": "38.4485009",
+    "lon": "43.3249998"
+  },
+  {
+    "isim": "Yalova Üniversitesi",
+    "lat": "40.6507791",
+    "lon": "29.2227194"
+  },
+  {
+    "isim": "Yeditepe Üniversitesi",
+    "lat": "40.9713319",
+    "lon": "29.1506076"
+  },
+  {
+    "isim": "Yıldız Teknik Üniversitesi",
+    "lat": "41.0522440",
+    "lon": "29.0105277"
+  },
+  {
+    "isim": "Yozgat Bozok Üniversitesi",
+    "lat": "39.7750582",
+    "lon": "34.7970764"
+  },
+  {
+    "isim": "Zonguldak Bülent Ecevit Üniversitesi",
+    "lat": "41.4539179",
+    "lon": "31.7623104"
+  }
+]
