@@ -289,8 +289,8 @@
   function showInfo(uni) {
     document.getElementById('infoBox').style.display = 'block';
     const imgPart = (uni.resim && uni.resim.trim() !== "")
-  ? `<img src="${uni.resim}" alt="${uni.isim}" onerror="this.onerror=null;this.outerHTML='<div style=\\'height:180px;background:#eee;border-radius:6px;display:flex;align-items:center;justify-content:center;\\'>Görsel yok</div>';">`
-  : `<div style='height:180px;background:#eee;border-radius:6px;display:flex;align-items:center;justify-content:center;'>Görsel yok</div>`;
+    ? `<img src="${uni.resim}" alt="${uni.isim}" onerror="this.onerror=null;this.outerHTML='<div style=\\'height:180px;background:#eee;border-radius:6px;display:flex;align-items:center;justify-content:center;\\'>Görsel yok</div>';">`
+    : `<div style='height:180px;background:#eee;border-radius:6px;display:flex;align-items:center;justify-content:center;'>Görsel yok</div>`;
 
 
     const dersListesiHTML = (uni.dersler || []).map(d =>
