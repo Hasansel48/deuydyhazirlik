@@ -287,9 +287,8 @@
   function showInfo(uni) {
     document.getElementById('infoBox').style.display = 'block';
     const imgPart = (uni.resim && uni.resim.trim() !== "")
-    ? `<img src="${uni.resim}" alt="${uni.isim}" onerror="this.onerror=null;this.parentNode.innerHTML='<div style=&quot;height:180px;background:#eee;border-radius:6px;display:flex;align-items:center;justify-content:center;&quot;>Görsel yok</div>';">`
-    : `<div style="height:180px;background:#eee;border-radius:6px;display:flex;align-items:center;justify-content:center;">Görsel yok</div>`;
-
+    ? <img src="${uni.resim}" alt="${uni.isim}" onerror="this.onerror=null;this.outerHTML='<div style=\\'height:180px;background:#eee;border-radius:6px;display:flex;align-items:center;justify-content:center;\\'>Görsel yok</div>';">
+    : <div style='height:180px;background:#eee;border-radius:6px;display:flex;align-items:center;justify-content:center;'>Görsel yok</div>;
     const dersListesiHTML = (uni.dersler || []).map(d =>
       `<button onclick="gosterIcerik('${escapeHtml(d.isim)}', '${escapeHtml(d.icerik)}', '${escapeHtml(d.durum)}', '${escapeHtml(d.tarih)}', '${escapeHtml(d.kaynak)}')">${d.isim}</button>`
     ).join("") || "Henüz ders bilgisi girilmemiş.";
