@@ -69,25 +69,25 @@
     "isim": "Abant İzzet Baysal Üniversitesi",
     "lat": "40.7166979",
     "lon": "31.5271807",
-    "resim": "/static/gorseller/abantizzet.jpg"
+    "resim": "gorseller/abantizzet.jpg"
   },
   {
     "isim": "Abdullah Gül Üniversitesi",
     "lat": "38.6817463",
     "lon": "35.6117907",
-    "resim": "/static/gorseller/abdullahgul.jpg"
+    "resim": "gorseller/abdullahgul.jpg"
   },
   {
     "isim": "Adana Alparslan Türkeş Bilim ve Teknoloji Üniversitesi",
     "lat": "37.0438848",
     "lon": "35.3874917",
-    "resim": "/static/gorseller/alparslan.jpg"
+    "resim": "gorseller/alparslan.jpg"
   },
   {
     "isim": "Adıyaman Üniversitesi",
     "lat": "37.747s2037",
     "lon": "38.2278524",
-    "resim": "/static/gorseller/adiyaman.jpg"
+    "resim": "gorseller/adiyaman.jpg"
   },
   {
     "isim": "Afyon Kocatepe Üniversitesi",
