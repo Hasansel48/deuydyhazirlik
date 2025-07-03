@@ -45,7 +45,63 @@ lan sorun orda değil sitem fotoğrafları algılamıyor sanırım bir yerde hat
     }
     .menu-toggle:hover {
       transform: scale(1.2);
-    }
+      }
+      #introModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: #ffffff;
+    padding: 30px 40px;
+    max-width: 800px;
+    width: 90%;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    color: #333;
+    font-family: 'Inter', sans-serif;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  .modal-close:hover {
+    color: #000;
+  }
+  
+  .modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c3e50;
+  }
+  
+  .modal-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
     .side-menu {
       height: 100%;
       width: 0;
@@ -205,6 +261,17 @@ lan sorun orda değil sitem fotoğrafları algılamıyor sanırım bir yerde hat
   </style>
 </head>
 <body>
+  <div id="introModal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <h2>Fakirüni Yaz Okulu Haritası</h2>
+    <p><strong>Fakirüni</strong> projesi kapsamında geliştirilen bu platform, Türkiye genelindeki devlet ve vakıf üniversitelerinin <strong>yaz okulu derslerini</strong> harita tabanlı bir sistemle kullanıcıların erişimine sunmaktadır. Öğrenciler, <strong>interaktif üniversite haritası</strong> üzerinden üniversitelerin konumlarını görebilir, yaz okulu kapsamında açılan derslerin içeriklerine ulaşabilir ve karşılaştırmalı olarak inceleme yapabilirler.</p>
+    <p>Platformumuz, başta <strong>yaz okulu planlaması</strong> yapan öğrenciler olmak üzere, akademik danışmanlar ve üniversite yöneticileri için de işlevsel bir referans kaynağı sunmayı amaçlamaktadır. Hangi üniversite hangi dersi açıyor, dersin süresi ve kapsamı nedir gibi sorulara hızlı ve sade bir arayüzle yanıt bulabilirsiniz.</p>
+    <p><strong>Fakirüni</strong>, tamamen gönüllü bir çabayla yürütülen ve hâlen geliştirme sürecinde olan açık bir projedir. Site içeriği zamanla daha fazla üniversite ve ders verisiyle zenginleştirilecektir. Bu gelişime katkı sağlamak, üniversite verisi eklemek veya teknik destek vermek isterseniz <strong>iletişim</strong> sayfası üzerinden bizimle doğrudan bağlantı kurabilirsiniz.</p>
+    <p>Öğrencilerin ihtiyaç duyduğu bilgiyi hızlıca bulabilmesini sağlayan bu sistem, <strong>kapsayıcı, erişilebilir ve sürekli güncellenen</strong> bir altyapıya sahiptir. <strong>Fakirüni</strong> olarak hedefimiz, üniversiteler ve öğrenciler arasında bilgi köprüsü kurmak ve yaz okulu sürecini şeffaflaştırmaktır.</p>
+  </div>
+</div>
+
   <div class="header">
     <h1><a href="https://fakiruni.xyz/" style="color: #facc15; text-decoration: none;">Fakirüni</a></h1>
 
@@ -245,6 +312,12 @@ lan sorun orda değil sitem fotoğrafları algılamıyor sanırım bir yerde hat
   </footer>
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 <script>
+  <script>
+  document.querySelector(".modal-close").addEventListener("click", function () {
+    document.getElementById("introModal").style.display = "none";
+  });
+  </script>
+
   const map = L.map('map', {
     zoomControl: false,
     scrollWheelZoom: true,
