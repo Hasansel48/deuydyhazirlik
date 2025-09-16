@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <!-- ========== Ads / Consent (KORUNDU) ========== -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8066385782862940" crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8066385782862940" crossorigin="anonymous"></script>
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b6d0402e-c1fd-48b2-bf9a-39dbd24ba81f" type="text/javascript" async></script>
+
+  <!-- ========== Temel Meta (GÜÇLENDİRİLDİ) ========== -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Temeli -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="language" content="tr-TR">
+  <meta name="theme-color" content="#ff9800">
+  <meta name="application-name" content="Fakirüni">
+  <meta name="creator" content="Hasan Sel">
+  <meta name="publisher" content="Fakirüni">
+  <meta name="revisit-after" content="7 days">
+
+  <!-- Açıklama & Anahtar Kelimeler (MEVCUT + DÜZENLİ) -->
+  <meta name="description" content="Dokuz Eylül Üniversitesi (DEÜ) Yabancı Diller Yüksekokulu öğrencileri için yıl içi notu, final notu ve geçme notunu hızlıca hesaplayabileceğiniz çevrimiçi araç." />
+  <meta name="keywords" content="Dokuz Eylül Üniversitesi, DEÜ, DEÜ hesaplama, DEÜ ortalama hesaplama, DEÜ YDY, YDY ortalama hesaplama, yıl içi not hesaplama, DEÜ final hesaplama, DEÜ geçme notu, DEÜ hazırlık ortalama hesaplama, Not Hesaplama, Hazırlık Sınıfı, Ortalama Hesaplama, Fakirüni,Fakir üniversitesi,fakirüniversitesi,fakiruni" />
+  <meta name="author" content="Hasan Sel" />
+
+  <!-- Canonical / Alternates -->
+  <link rel="canonical" href="https://fakiruni.xyz/">
+  <link rel="alternate" href="https://fakiruni.xyz/" hreflang="tr-TR">
+  <link rel="alternate" href="https://fakiruni.xyz/" hreflang="x-default">
+
+  <!-- ========== Open Graph (MEVCUT + GÜÇLENDİRİLDİ) ========== -->
+  <meta property="og:title" content="DEÜ YDY Not Hesaplama" />
+  <meta property="og:description" content="DEÜ Hazırlık öğrencileri için not hesaplama uygulaması. Yıl içi ve final ortalamasını kolayca hesaplayın." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fakiruni.xyz" />
+  <meta property="og:image" content="https://fakiruni.xyz/assets/logo.png" />
+  <meta property="og:site_name" content="Fakirüni">
+  <meta property="og:locale" content="tr_TR" />
+
+  <!-- ========== Twitter Cards (YENİ) ========== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DEÜ YDY Not Hesaplama | Fakirüni">
+  <meta name="twitter:description" content="DEÜ hazırlık öğrencileri için yıl içi ve final notu hesaplama aracı.">
+  <meta name="twitter:image" content="https://fakiruni.xyz/assets/logo.png">
+
+  <!-- ========== Preconnect/Hint (HIZ İYİLEŞTİRME) ========== -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
+
+  <!-- ========== Google tag (gtag.js) (MEVCUT) ========== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RLX3480SHS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RLX3480SHS');
+  </script>
+
+  <!-- ========== Structured Data JSON-LD (YENİ) ========== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Fakirüni",
+    "url": "https://fakiruni.xyz/",
+    "inLanguage": "tr-TR",
+    "description": "DEÜ YDY öğrencileri için yıl içi, final ve geçme notunu hesaplama aracı.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Fakirüni",
+      "url": "https://fakiruni.xyz/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://fakiruni.xyz/assets/logo.png"
+      }
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://fakiruni.xyz/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- ========== Title (MEVCUT BAŞLIK KORUNDU) ========== -->
+  <title>DEÜ YDY Ortalama Hesaplama</title>
+
+  <!-- ========== Stil (MEVCUT) ========== -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f4f4f4, #f0f2f5);
+      padding-top: 100px;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(to right, #ff9800, #f44336);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 36px;
+      font-weight: 900;
+      color: #fff8dc;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+
+    .header .icons a {
+      color: white;
+      font-size: 26px;
+      margin-left: 25px;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .header .icons a:hover {
+      color: #ffe082;
+      transform: scale(1.4);
+    }
+
+    .main-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 60px 20px;
+    }
+
+    .container, .final-container {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover, .final-container:hover {
+      transform: scale(1.01);
+    }
+
+    .container {
+      padding: 40px;
+      max-width: 900px;
+      flex: 2;
+    }
+
+    .final-container {
+      padding: 40px;
+      max-width: 400px;
+      flex: 1;
+      align-self: center;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    .inputs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    label {
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      color: #333;
+    }
+
+    input[type="number"] {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    input[type="number"]:invalid {
+      border-color: red;
+    }
+
+    button {
+      display: block;
+      margin: 30px auto;
+      padding: 14px 35px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #0072ff, #00c6ff);
+      transform: translateY(-2px);
+    }
+
+    .result {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #444;
+    }
+
+    p {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+  input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+  
+  
+  .final-container-comments {
+    display: flex;
+    flex-direction: column;
+    max-width: 960px;
+    width: 100%;
+    margin: 40px auto;
+    gap: 30px;
+}
+  .comment-section {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+    .menu-toggle {
+  font-size: 28px;
+  cursor: pointer;
+  margin-left: 25px;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.2);
+}
+
+.side-menu {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: linear-gradient(to bottom right, #212121, #424242);
+  color: #fff;
+  overflow-x: hidden;
+  transition: width 0.5s ease;
+  padding-top: 60px;
+  z-index: 1500;
+  box-shadow: -3px 0 10px rgba(0, 0, 0, 0.4);
+  border-left: 2px solid #ff9800;
+}
+
+.side-menu .menu-header {
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.side-menu h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.side-menu .close-btn {
+  font-size: 32px;
+  cursor: pointer;
+  color: #ffccbc;
+  transition: color 0.3s ease;
+}
+
+.side-menu .close-btn:hover {
+  color: #fff;
+}
+
+.side-menu a {
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #eee;
+  display: block;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.side-menu a:hover {
+  background-color: #ff5722;
+  color: #fff;
+  transform: translateX(-5px);
+}
+</style>
+
+  <!-- ========== Font Awesome (MEVCUT) ========== -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="header" role="banner" aria-label="Üst Başlık">
+    <h1>Fakirüni</h1>
+    <div class="icons" aria-hidden="true"></div>
+    <span class="menu-toggle" onclick="openMenu()" aria-label="Menüyü Aç"><i class="fas fa-bars" aria-hidden="true"></i></span>
+</div>
+  </div>
+
+  <div class="main-wrapper">
+    <div class="container" role="main">
+      <h2 style="text-align:center; font-size: 28px; margin-bottom: 10px; color:#1a237e; text-shadow: 0 1px 3px rgba(0,0,0,0.2);">DEÜ YDY Ortalama Hesaplama</h2>
+<label style="display:block; text-align:center; margin-bottom: 20px; font-weight:bold;">Kur Seçiniz:
+  <select id="kurSecimi" style="margin-left: 10px; padding: 5px 10px; border-radius: 6px;" aria-label="Kur Seçimi">
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
+  </select>
+</label>
+<h2>1. Dönem Not Girişi</h2>
+      <div class="inputs">
+        <label>Quiz 1: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="q1_1" min="0" max="100" aria-label="1. Dönem Quiz 1"></label>
+        <label>Quiz 2: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="q2_1" min="0" max="100" aria-label="1. Dönem Quiz 2"></label>
+        <label>Vize 1: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="v1_1" min="0" max="100" aria-label="1. Dönem Vize 1"></label>
+        <label>Vize 2: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="v2_1" min="0" max="100" aria-label="1. Dönem Vize 2"></label>
+        <label>Sunum: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="sunum_1" min="0" max="100" aria-label="1. Dönem Sunum"></label>
+        <label>Katılım: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="katilim_1" min="0" max="100" aria-label="1. Dönem Katılım"></label>
+        <label>Ödev: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="odev_1" min="0" max="100" aria-label="1. Dönem Ödev"></label>
+        <label>Writing: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="writing_1" min="0" max="100" aria-label="1. Dönem Writing"></label>
+      </div>
+
+      <h2>2. Dönem Not Girişi</h2>
+      <div class="inputs">
+        <label>Quiz 1: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="q1_2" min="0" max="100" aria-label="2. Dönem Quiz 1"></label>
+        <label>Quiz 2: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="q2_2" min="0" max="100" aria-label="2. Dönem Quiz 2"></label>
+        <label>Vize 1: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="v1_2" min="0" max="100" aria-label="2. Dönem Vize 1"></label>
+        <label>Vize 2: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="v2_2" min="0" max="100" aria-label="2. Dönem Vize 2"></label>
+        <label>Sunum: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="sunum_2" min="0" max="100" aria-label="2. Dönem Sunum"></label>
+        <label>Katılım: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="katilim_2" min="0" max="100" aria-label="2. Dönem Katılım"></label>
+        <label>Ödev: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="odev_2" min="0" max="100" aria-label="2. Dönem Ödev"></label>
+        <label>Writing: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="writing_2" min="0" max="100" aria-label="2. Dönem Writing"></label>
+      </div>
+      <button onclick="calculateYear()" aria-label="Yıl İçi Ortalamasını Hesapla">Yıl İçi Ortalamasını Hesapla</button>
+      <div id="result" class="result" aria-live="polite"></div>
+    </div>
+
+    
+</div>
+<div class="final-container-comments">
+  <div class="final-container" aria-label="Final Hesaplama Alanı">
+    <h2>Final Hesaplama</h2>
+    <label>Yıl Sonu Notunuz: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="yearGrade" min="0" max="100" aria-label="Yıl Sonu Notu"></label><br><br>
+    <label>Final Notunuz: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="finalGrade" min="0" max="100" aria-label="Final Notu"></label><br><br>
+    <button onclick="calculateFinal()" aria-label="Finalle Ortalamayı Hesapla">Finalle Ortalamayı Hesapla</button>
+    <div id="finalResult" class="result" aria-live="polite"></div>
+  </div>
+  <div class="comment-section" style="margin-top: 30px;">
+    <h2 style="text-align:center; color: #37474f; margin-bottom: 20px;">Yorumlar</h2>
+    <div class="commentbox" data-project-id="5724459575017472-proj"></div>
+    <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js" defer></script>
+    <script>document.addEventListener('DOMContentLoaded',function(){ if (window.commentBox) commentBox('5724459575017472-proj'); });</script>
+  </div>
+ 
+
+<!-- SSS BÖLÜMÜ -->
+<section style="
+  display: block;
+  width: 100%;
+  flex: 0 0 100%;
+  max-width: 960px;
+  margin: 60px auto;
+  padding: 30px 25px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
+  box-sizing: border-box;
+  clear: both;
+">
+  <h2 style="text-align: center; color: #1a237e; margin-bottom: 20px;">Sıkça Sorulan Sorular (SSS)</h2>
+
+  <h3>Bu site ne işe yarar?</h3>
+  <p>
+    Fakirüni, Dokuz Eylül Üniversitesi Yabancı Diller Yüksekokulu (DEÜ YDY) öğrencileri için hazırlanmış bir not hesaplama aracıdır. Öğrenciler bu platform sayesinde finalsiz geçip geçemeyeceklerini ya da finalden kaç almaları gerektiğini kolayca öğrenebilir.
+  </p>
+
+  <h3>Puanlama nasıl yapılır?</h3>
+  <p>
+    Her iki döneme ait quiz, vize, writing, ödev, sunum ve katılım notları yıl içi ortalamasını oluşturur. Daha sonra yıl içi notunun %40'ı ve final notunun %60'ı alınarak toplam yıl sonu ortalaması hesaplanır. Sistem, öğrencinin kuruna göre geçme durumunu da otomatik olarak gösterir.
+  </p>
+
+  <h3>Bu site resmi mi?</h3>
+  <p>
+    Hayır. Bu site herhangi bir resmi kurumla bağlantılı değildir. DEÜ öğrencileri tarafından bağımsız olarak oluşturulmuş bir projedir. Hesaplamalarda küçük sapmalar olabilir; bu nedenle sonuçlar yalnızca bilgilendirme amaçlıdır. Herhangi bir geri bildiriminiz varsa yorum kısmından veya <a href="mailto:slhsn48@gmail.com">iletişim</a> adresinden bize ulaşabilirsiniz.
+  </p>
+
+  <p style="text-align: center; font-style: italic; margin-top: 25px;">
+    “Fakirüni – Fakir üniversitelinin zekâsı çözümdür.”
+  </p>
+</section>
+
+<!-- Menü Paneli -->
+<div id="sideMenu" class="side-menu" role="navigation" aria-label="Yan Menü">
+  <div class="menu-header">
+    <span class="close-btn" onclick="closeMenu()" aria-label="Menüyü Kapat">&times;</span>
+    <h3>Menü</h3>
+  </div>
+  <a href="/">Ana Sayfa</a>
+  <a href="/hakkimizda.html">Hakkımızda</a>
+  <a href="/yazokullari.html">Yaz Okulları Haritası</a>
+  <a href="/telegram-botlar.html">Telegram Botlarımız</a>
+  <a href="mailto:slhsn48@gmail.com">İletişim</a>
+</div>
+
+  <!-- ========== JS (MEVCUT + ufak erişilebilirlik iyileştirmesi) ========== -->
+  <script>
+    function calculateYear() {
+      const ids = [
+        'q1_1', 'q2_1', 'v1_1', 'v2_1', 'sunum_1', 'katilim_1', 'odev_1', 'writing_1',
+        'q1_2', 'q2_2', 'v1_2', 'v2_2', 'sunum_2', 'katilim_2', 'odev_2', 'writing_2'
+      ];
+      let total = 0;
+      let count = 0;
+
+      // Tüm kutucuklar dolu mu kontrolü
+      for (let id of ids) {
+        const input = document.getElementById(id);
+        if (input.value.trim() === '') {
+          alert("Lütfen tüm kutucukları doldurun.");
+          input.focus();
+          return;
+        }
+      }
+
+      for (let id of ids) {
+        const input = document.getElementById(id);
+        const val = parseFloat(input.value);
+        if (!isNaN(val)) {
+          if (val < 0 || val > 100) {
+            alert("Lütfen 0 ile 100 arasında bir değer giriniz.");
+            input.focus();
+            return;
+          }
+          total += val;
+          count++;
+        }
+      }
+      const average = count > 0 ? (total / count) : 0;
+      let threshold = 85;
+      const selectedKur = document.getElementById('kurSecimi').value;
+      if (selectedKur === 'B') threshold = 80;
+      else if (selectedKur === 'C') threshold = 75;
+      const resultText = `Yıl İçi Ortalamanız: ${average.toFixed(2)}<br>` +
+                         `Durum: ${average >= threshold ? 'Geçtiniz ✔️' : 'Finale Kaldınız ❌'}`;
+      document.getElementById('result').innerHTML = resultText;
+    }
+
+    function calculateFinal() {
+      const yearGrade = parseFloat(document.getElementById('yearGrade').value);
+      const finalGrade = parseFloat(document.getElementById('finalGrade').value);
+      if (isNaN(yearGrade) || isNaN(finalGrade)) {
+        alert("Lütfen tüm alanları doldurun.");
+        return;
+      }
+      if (yearGrade < 0 || yearGrade > 100 || finalGrade < 0 || finalGrade > 100) {
+        alert("Notlar 0 ile 100 arasında olmalıdır.");
+        return;
+      }
+      const yearWeighted = yearGrade * 0.4;
+      const finalWeighted = finalGrade * 0.6;
+      const overall = yearWeighted + finalWeighted;
+      const result = document.getElementById('finalResult');
+      result.innerHTML = `Yıl Sonu: ${yearGrade.toFixed(2)}<br>` +
+                         `Final: ${finalGrade.toFixed(2)}<br>` +
+                         `Ortalama: ${overall.toFixed(2)}`;
+    }
+    function openMenu() {
+    document.getElementById("sideMenu").style.width = "260px";
+  }
+
+  function closeMenu() {
+    document.getElementById("sideMenu").style.width = "0";
+  }
+  </script>
+</body>
+</html>
