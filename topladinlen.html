@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Halkalı Fizik Oyunu</title>
+  <style>
+    html, body { height: 100%; margin: 0; background: #0b0f14; color: #e7eef7; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji'; }
+    #wrap { position: fixed; inset: 0; display: grid; place-items: center; }
+    canvas { width: min(100vw, 100vh); height: min(100vw, 100vh); aspect-ratio: 1/1; display: block; }
+    .hud { position: fixed; left: 12px; bottom: 12px; background: #111827cc; padding: 10px 12px; border-radius: 12px; font-size: 14px; line-height: 1.4; backdrop-filter: blur(6px); box-shadow: 0 10px 30px #0007; }
+    .hud b { color: #c7d2fe; }
+    .topbar { position: fixed; top: 12px; left: 12px; right: 12px; display: flex; gap: 8px; align-items: center; }
+    .topbar .btn { appearance: none; border: none; background: #1f2937; color: #e5e7eb; padding: 10px 12px; border-radius: 10px; cursor: pointer; transition: transform .05s ease, background .2s ease; }
+    .topbar .btn:hover { background: #374151; }
+    .topbar .btn:active { transform: scale(0.98); }
+    .slider { display: flex; align-items: center; gap: 8px; background: #111827cc; padding: 8px 10px; border-radius: 10px; }
+    .slider input[type="range"] { width: 140px; }
+    .credit { position: fixed; right: 12px; bottom: 12px; opacity: .6; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <canvas id="c"></canvas>
+  </div>
+
+  <div class="topbar">
+    <button class="btn" id="reset">Sıfırla</button>
+    <button class="btn" id="pause">Duraklat</button>
+    <div class="slider">
+      <label for="gap">Açıklık:</label>
+      <input id="gap" type="range" min="5" max="120" value="40" />
+      <span id="gapVal">40°</span>
+    </div>
+    <div class="slider">
+      <label for="grav">Yerçekimi:</label>
+      <input id="grav" type="range" min="100" max="2000" value="900" />
+      <span id="gravVal">900</span>
+    </div>
+  </div>
+
+  <div class="hud">
+    <div><b>Top</b>: <span id="ballCount">0</span></div>
+    <div><b>Çıkışta Kural</b>: Top açıklıktan dışarı <u>çıkarsa</u> ⇒ halka içine <b>+2</b> yeni top eklenir.</div>
+    <div><b>İpucu</b>: Ekrana tıklarsan merkezden yeni toplar düşer.</div>
+  </div>
+  <div class="credit">© 2025</div>
+
+  <script>
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+    let W, H, CX, CY, R;
+
+    function fit() {
+      const size = Math.min(window.innerWidth, window.innerHeight);
+      canvas.width = size * devicePixelRatio;
+      canvas.height = size * devicePixelRatio;
+      canvas.style.width = size + 'px';
+      canvas.style.height = size + 'px';
+      W = canvas.width; H = canvas.height; CX = W/2; CY = H/2; R = Math.min(W, H) * 0.30;
+    }
+    window.addEventListener('resize', fit);
+    fit();
+
+    const hudBalls = document.getElementById('ballCount');
+    const gapSlider = document.getElementById('gap');
+    const gapVal = document.getElementById('gapVal');
+    const gravSlider = document.getElementById('grav');
+    const gravVal = document.getElementById('gravVal');
+    const btnReset = document.getElementById('reset');
+    const btnPause = document.getElementById('pause');
+
+    let gapDeg = parseFloat(gapSlider.value);
+    let gapCenter = -Math.PI / 2;
+    let gravity = parseFloat(gravSlider.value);
+    let paused = false;
+    let autoRotateSpeed = 0.5 * Math.PI/180;
+
+    gapSlider.addEventListener('input', () => { gapDeg = parseFloat(gapSlider.value); gapVal.textContent = gapDeg + '°'; });
+    gravSlider.addEventListener('input', () => { gravity = parseFloat(gravSlider.value); gravVal.textContent = gravity; });
+
+    btnReset.addEventListener('click', resetWorld);
+    btnPause.addEventListener('click', () => { paused = !paused; btnPause.textContent = paused ? 'Sürdür' : 'Duraklat'; });
+
+    const balls = [];
+    const MAX_BALLS = 250;
+    const colors = ['#f87171','#facc15','#4ade80','#60a5fa','#c084fc','#f472b6','#34d399','#fbbf24'];
+
+    function addBall(x = CX, y = CY, vx = (Math.random()*120-60), vy = (Math.random()*-80-40)) {
+      const r = Math.max(8, Math.min(18, 12 + (Math.random()*8-4))) * devicePixelRatio;
+      const color = colors[Math.floor(Math.random()*colors.length)];
+      balls.push({ x, y, vx, vy, r, color, id: crypto.getRandomValues(new Uint32Array(1))[0], exited: false, alpha: 1 });
+      hudBalls.textContent = balls.length;
+    }
+
+    function resetWorld() {
+      balls.length = 0;
+      addBall(CX, CY, 0, 0);
+      hudBalls.textContent = balls.length;
+    }
+
+    canvas.addEventListener('click', () => {
+      if (balls.length < MAX_BALLS) addBall(CX, CY, (Math.random()*200-100), (Math.random()*-200));
+    });
+
+    resetWorld();
+
+    function withinGap(theta) {
+      let a = theta - gapCenter;
+      while (a <= -Math.PI) a += 2*Math.PI;
+      while (a > Math.PI) a -= 2*Math.PI;
+      const half = (gapDeg * Math.PI/180) / 2;
+      return Math.abs(a) <= half;
+    }
+
+    function reflectVelocity(vx, vy, nx, ny, restitution = 1.05) {
+      const vdotn = vx*nx + vy*ny;
+      const rx = vx - (1+restitution) * vdotn * nx;
+      const ry = vy - (1+restitution) * vdotn * ny;
+      return [rx, ry];
+    }
+
+    let last = performance.now();
+
+    function step(now) {
+      const dt = Math.min(0.033, (now - last) / 1000);
+      last = now;
+
+      if (!paused) {
+        gapCenter += autoRotateSpeed;
+
+        for (let i = balls.length - 1; i >= 0; i--) {
+          const b = balls[i];
+          b.vy += gravity * dt;
+
+          b.vx *= 1.002;
+          b.vy *= 1.002;
+
+          b.x += b.vx * dt * devicePixelRatio;
+          b.y += b.vy * dt * devicePixelRatio;
+
+          const dx = b.x - CX;
+          const dy = b.y - CY;
+          const dist = Math.hypot(dx, dy);
+          const boundary = R - b.r;
+
+          if (!b.exited && dist >= boundary) {
+            const theta = Math.atan2(dy, dx);
+            const outwardSpeed = (dx*b.vx + dy*b.vy) / (dist || 1);
+
+            if (withinGap(theta) && outwardSpeed > 0) {
+              b.exited = true; // dışarı çıktı
+              if (balls.length < MAX_BALLS - 1) {
+                addBall(CX, CY, (Math.random()*220-110), (Math.random()*-220));
+                addBall(CX, CY, (Math.random()*220-110), (Math.random()*-220));
+              }
+            } else {
+              const nx = (dx / (dist || 1));
+              const ny = (dy / (dist || 1));
+              b.x = CX + nx * boundary;
+              b.y = CY + ny * boundary;
+              [b.vx, b.vy] = reflectVelocity(b.vx, b.vy, nx, ny, 1.05);
+            }
+          }
+
+          if (b.exited) {
+            if (dist > R * 1.5) {
+              b.alpha -= 0.05;
+              if (b.alpha <= 0) {
+                balls.splice(i,1);
+                hudBalls.textContent = balls.length;
+              }
+            }
+          }
+        }
+      }
+
+      ctx.clearRect(0, 0, W, H);
+
+      const ringWidth = Math.max(6, Math.round((Math.min(W,H) * 0.012)));
+      ctx.save();
+      ctx.translate(CX, CY);
+      ctx.lineWidth = ringWidth;
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = '#a5b4fc';
+
+      const gapRad = gapDeg * Math.PI / 180;
+      const start1 = gapCenter + gapRad/2;
+      const end1 = gapCenter - gapRad/2 + 2*Math.PI;
+
+      ctx.beginPath();
+      ctx.arc(0, 0, R, start1, end1, false);
+      ctx.stroke();
+
+      ctx.strokeStyle = '#93c5fd';
+      ctx.lineWidth = Math.max(2, ringWidth*0.5);
+      ctx.beginPath();
+      ctx.arc(0, 0, R, gapCenter - gapRad/2, gapCenter - gapRad/2 + 0.02, false);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(0, 0, R, gapCenter + gapRad/2 - 0.02, gapCenter + gapRad/2, false);
+      ctx.stroke();
+
+      ctx.restore();
+
+      for (const b of balls) {
+        ctx.globalAlpha = b.alpha;
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
+        ctx.fillStyle = b.color;
+        ctx.shadowColor = b.color;
+        ctx.shadowBlur = 15;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'a' || e.key === 'A' || e.key === 'ArrowLeft') gapCenter -= 0.08;
+      if (e.key === 'd' || e.key === 'D' || e.key === 'ArrowRight') gapCenter += 0.08;
+      if (e.key === ' ') { paused = !paused; btnPause.textContent = paused ? 'Sürdür' : 'Duraklat'; }
+      if (e.key === 'r' || e.key === 'R') resetWorld();
+    });
+  </script>
+</body>
+</html>
