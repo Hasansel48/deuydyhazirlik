@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusMaster v2.0</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root { --primary: #6c5ce7; --bg: #f8f9fa; --card: #ffffff; --text: #2d3436; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; display: flex; height: 100vh; overflow: hidden; }
+        
+        /* Menü Tasarımı */
+        .sidebar { width: 250px; background: var(--primary); color: white; display: flex; flex-direction: column; padding: 20px; }
+        .sidebar h2 { font-size: 20px; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+        .menu-item { padding: 15px; cursor: pointer; border-radius: 10px; transition: 0.3s; margin-bottom: 5px; font-weight: 500; }
+        .menu-item:hover { background: rgba(255,255,255,0.1); }
+        .menu-item.active { background: white; color: var(--primary); }
+
+        /* Ana İçerik Alanı */
+        .main-content { flex: 1; padding: 40px; overflow-y: auto; }
+        .page { display: none; }
+        .page.active { display: block; }
+
+        /* Sayaç Kartı */
+        .card { background: var(--card); padding: 30px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: center; max-width: 500px; margin: auto; }
+        .timer-display { font-size: 5rem; font-weight: bold; margin: 20px 0; color: var(--text); }
+        .inputs { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        input { padding: 12px; border-radius: 8px; border: 1px solid #ddd; }
+        
+        /* Butonlar */
+        .btn { padding: 15px 30px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 16px; }
+        .btn-start { background: #00b894; color: white; width: 100%; }
+        .btn-reset { background: #fab1a0; color: #d63031; margin-top: 10px; }
+
+        /* Grafik Butonları */
+        .chart-btn { padding: 10px 20px; border: 2px solid #ddd; background: white; border-radius: 8px; cursor: pointer; font-weight: 500; transition: 0.3s; }
+        .chart-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        /* Veri Sayfası */
+        .stats-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .data-list { list-style: none; padding: 0; text-align: left; }
+        .data-item { background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
+        /* Dairesel Progress */
+        .circular-progress { position: relative; width: 200px; height: 200px; margin: 20px auto; }
+        .circular-progress svg { transform: rotate(-90deg); }
+        .circular-progress-circle { fill: none; stroke-linecap: round; }
+        .circular-progress-bg { stroke: #e0e0e0; stroke-width: 8; }
+        .circular-progress-fill { stroke: #6c5ce7; stroke-width: 8; stroke-dasharray: 471; stroke-dashoffset: 471; transition: stroke-dashoffset 0.5s ease; }
+        .circular-progress-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+        .circular-progress-text .percentage { font-size: 32px; font-weight: bold; color: #6c5ce7; }
+        .circular-progress-text .label { font-size: 12px; color: #999; margin-top: 5px; }
+
+        /* Auth Sayfası */
+        .auth-container { display: flex; justify-content: center; align-items: center; height: 100vh; background: var(--bg); }
+        .auth-card { background: var(--card); padding: 50px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        .auth-card h1 { text-align: center; margin-bottom: 30px; color: var(--primary); }
+        .auth-input { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-size: 14px; }
+        .auth-btn { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 10px; }
+        .auth-btn:hover { background: #5a4bb3; }
+        .auth-toggle { text-align: center; margin-top: 15px; }
+        .auth-toggle a { color: var(--primary); cursor: pointer; text-decoration: underline; }
+        .error-msg { color: #d63031; text-align: center; margin-bottom: 15px; font-size: 14px; }
+        .success-msg { color: #00b894; text-align: center; margin-bottom: 15px; font-size: 14px; }
+
+        /* Sidebar Kullanıcı Bilgisi */
+        .user-info { margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); text-align: center; }
+        .user-info p { margin: 5px 0; font-size: 12px; }
+        .logout-btn { width: 100%; padding: 10px; background: #d63031; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        .logout-btn:hover { background: #a92015; }
+    </style>
+</head>
+<body>
+
+    <div id="authPage" class="auth-container">
+        <div class="auth-card">
+            <h1 id="authTitle">Giriş Yap</h1>
+            <div id="errorMsg" class="error-msg" style="display:none;"></div>
+            <div id="successMsg" class="success-msg" style="display:none;"></div>
+            
+            <input type="email" id="authEmail" class="auth-input" placeholder="E-posta" autocomplete="email">
+            <input type="password" id="authPassword" class="auth-input" placeholder="Şifre" autocomplete="current-password">
+            <input type="text" id="authName" class="auth-input" placeholder="Ad Soyad" autocomplete="name" style="display:none; width:100%; box-sizing:border-box;">
+            
+            <button class="auth-btn" id="authBtn" onclick="handleAuth()">Giriş Yap</button>
+            
+            <div class="auth-toggle">
+                <span id="toggleText">Hesabın yok mu? <a onclick="toggleAuthMode()">Kaydol</a></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="mainApp" style="display:none; height:100vh;">
+        <div class="sidebar">
+            <h2>🚀 FocusMaster</h2>
+            <div class="menu-item active" onclick="showPage('timerPage', this)">Sayaç</div>
+            <div class="menu-item" onclick="showPage('statsPage', this); updateStats();">Veriler</div>
+            <div class="user-info">
+                <p>👤 <span id="userNameDisplay">Kullanıcı</span></p>
+                <p id="userEmailDisplay">email@example.com</p>
+                <p style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.3); font-size: 11px;">ID: <strong id="userIdDisplay">000000</strong></p>
+                
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+                    <p style="margin: 0 0 10px 0; font-size: 12px; font-weight: bold;">Arkadaş Ekle</p>
+                    <div style="display: flex; gap: 5px;">
+                        <input type="text" id="friendIdInput" placeholder="Arkadaş ID" style="flex: 1; padding: 5px; border-radius: 5px; border: none; font-size: 12px;">
+                        <button onclick="addFriend()" style="padding: 5px 10px; background: #00b894; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 12px;">+</button>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+                    <p style="margin: 0 0 10px 0; font-size: 12px; font-weight: bold;">Arkadaşlar</p>
+                    <div id="friendsList" style="max-height: 150px; overflow-y: auto;">
+                    </div>
+                </div>
+                
+                <button class="logout-btn" onclick="logout()">Çıkış Yap</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+        
+        <div id="timerPage" class="page active">
+            <div class="card">
+                <h3>Çalışma Seansı</h3>
+                <div class="inputs">
+                    <div style="position: relative;">
+                        <input type="text" id="dersAdi" list="dersList" placeholder="Ders Adı (seç veya yaz)">
+                        <datalist id="dersList">
+                        </datalist>
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <input type="number" id="workMins" placeholder="Calisma (dk)" style="width:33%" title="Çalışma" oninput="calculateSessions()" min="1">
+                        <input type="number" id="restMins" placeholder="Mola (dk)" style="width:33%" title="Mola" oninput="calculateSessions()" min="1">
+                        <input type="number" id="sessions" placeholder="Seans" style="width:33%" title="Seans Sayısı" oninput="calculateSessions()" min="1">
+                    </div>
+                    <input type="number" id="dailyGoal" placeholder="Gunluk Hedef (Saat)" style="width:100%" min="1">
+                    
+                    <div class="circular-progress">
+                        <svg width="200" height="200">
+                            <circle class="circular-progress-circle circular-progress-bg" cx="100" cy="100" r="75"></circle>
+                            <circle class="circular-progress-circle circular-progress-fill" id="progressCircle" cx="100" cy="100" r="75"></circle>
+                        </svg>
+                        <div class="circular-progress-text">
+                            <div class="percentage" id="progressPercentage">0%</div>
+                            <div class="label" id="progressLabel">0h / 8h</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timer-display" id="timeDisplay">25:00</div>
+                <button class="btn btn-start" id="startBtn" onclick="toggleTimer()">BAŞLAT</button>
+                <button class="btn btn-reset" onclick="resetAll()">Sifirla</button>
+            </div>
+        </div>
+
+        <div id="statsPage" class="page">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <h2 style="margin: 0;">İstatistiklerin</h2>
+                    <select id="viewModeSelect" onchange="switchViewMode()" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #ddd; cursor: pointer;">
+                        <option value="own">Kendi Verilerim</option>
+                        <option value="friend">Arkadaş Verileri</option>
+                    </select>
+                    <select id="friendSelect" onchange="switchFriend()" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #ddd; cursor: pointer; display: none;">
+                        <option value="">Arkadaş Seç</option>
+                    </select>
+                </div>
+                <button onclick="openCalendar()" style="background: none; border: none; font-size: 28px; cursor: pointer; padding: 0;">📅</button>
+            </div>
+            <div class="stats-grid">
+                <div class="card" style="max-width: 100%;">
+                    <h3>Ders Bazlı Dağılım</h3>
+                    <div id="dersListesi" class="data-list">
+                    </div>
+                </div>
+                <div class="card" style="max-width: 100%;">
+                    <h3>Genel Performans</h3>
+                    <div style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center;">
+                        <button class="chart-btn active" onclick="updateChartView('daily')">Günlük</button>
+                        <button class="chart-btn" onclick="updateChartView('weekly')">Haftalık</button>
+                        <button class="chart-btn" onclick="updateChartView('monthly')">Aylık</button>
+                    </div>
+                    <canvas id="mainChart"></canvas>
+                </div>
+                <div class="card" style="max-width: 100%;">
+                    <h3 id="dersChartTitle">Ders Grafikleri</h3>
+                    <div style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; flex-wrap: wrap;" id="dersButtonContainer">
+                    </div>
+                    <canvas id="dersChart" style="display:none;"></canvas>
+                    <div id="noDataMsg" style="text-align: center; padding: 20px; color: #999;">
+                        Veri görmek için yukarıdan bir ders seçin
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Takvim Modal -->
+    <div id="calendarModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+        <div style="background: white; border-radius: 15px; padding: 30px; max-width: 900px; max-height: 90vh; overflow-y: auto; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div>
+                    <button onclick="prevMonth()" style="padding: 8px 12px; background: #6c5ce7; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">←</button>
+                    <span id="calendarMonth" style="font-size: 18px; font-weight: bold; min-width: 150px; text-align: center; display: inline-block;"></span>
+                    <button onclick="nextMonth()" style="padding: 8px 12px; background: #6c5ce7; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">→</button>
+                </div>
+                <button onclick="closeCalendar()" style="background: #d63031; color: white; border: none; border-radius: 5px; padding: 8px 15px; cursor: pointer; font-size: 16px;">✕</button>
+            </div>
+            <div id="calendarGrid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-bottom: 20px;"></div>
+            <div id="selectedDayData" style="display: none; margin-top: 20px;">
+                <h3 id="selectedDayTitle"></h3>
+                <button onclick="closeDayData()" style="float: right; background: #d63031; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">✕</button>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px; clear: both;">
+                    <thead>
+                        <tr style="background: #f0f0f0;">
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Ders</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Dakika</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dayDataBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<script>
+    let timer;
+    let timeLeft;
+    let isRunning = false;
+    let isWorking = true;
+    let currentDers = "";
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let allUsers = JSON.parse(localStorage.getItem('focusUsers')) || [];
+    let kayitlar = currentUser ? (JSON.parse(localStorage.getItem(`focusKayitlar_${currentUser.email}`)) || []) : [];
+    let myChart;
+    let dersChart;
+    let currentSession = 0;
+    let totalSessions = 0;
+    let currentChartView = 'daily';
+    let selectedDers = null;
+    let isSignupMode = false;
+    let currentCalendarDate = new Date();
+    let viewingFriendData = null;
+
+    // Sayfa yüklendiğinde kontrol et
+    window.addEventListener('DOMContentLoaded', () => {
+        if (currentUser) {
+            showMainApp();
+            updateDersList();
+            calculateSessions();
+        } else {
+            showAuthPage();
+        }
+    });
+
+    // Ilk acilds'ta ve sayfa yüklemede progress guncelle
+    setInterval(() => {
+        if (currentUser) {
+            const todayData = kayitlar.filter(k => k.tarih === new Date().toLocaleDateString('tr-TR'));
+            const totalMinutes = todayData.reduce((sum, item) => sum + item.dakika, 0);
+            const totalHours = totalMinutes / 60;
+            const dailyGoal = parseInt(document.getElementById('dailyGoal').value) || 8;
+            
+            const percentage = Math.min(100, Math.round((totalHours / dailyGoal) * 100));
+            const circumference = 2 * Math.PI * 75;
+            const strokeDashoffset = circumference - (percentage / 100) * circumference;
+            
+            document.getElementById('progressCircle').style.strokeDashoffset = strokeDashoffset;
+            document.getElementById('progressPercentage').innerText = percentage + '%';
+            document.getElementById('progressLabel').innerText = totalHours.toFixed(1) + 'h / ' + dailyGoal + 'h';
+        }
+    }, 5000);
+
+    // Auth Fonksiyonları
+    function toggleAuthMode() {
+        isSignupMode = !isSignupMode;
+        const authTitle = document.getElementById('authTitle');
+        const authBtn = document.getElementById('authBtn');
+        const authName = document.getElementById('authName');
+        const toggleText = document.getElementById('toggleText');
+
+        console.log('toggleAuthMode çağrıldı, yeni modu:', isSignupMode);
+
+        if (isSignupMode) {
+            authTitle.innerText = 'Kaydol';
+            authBtn.innerText = 'Kaydol';
+            authName.style.display = 'block';
+            toggleText.innerHTML = 'Zaten hesabın var mı? <a onclick="toggleAuthMode()">Giriş Yap</a>';
+        } else {
+            authTitle.innerText = 'Giriş Yap';
+            authBtn.innerText = 'Giriş Yap';
+            authName.style.display = 'none';
+            toggleText.innerHTML = 'Hesabın yok mu? <a onclick="toggleAuthMode()">Kaydol</a>';
+        }
+        clearMessages();
+    }
+
+    function clearMessages() {
+        document.getElementById('errorMsg').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'none';
+    }
+
+    function showError(msg) {
+        clearMessages();
+        const errorDiv = document.getElementById('errorMsg');
+        errorDiv.innerText = msg;
+        errorDiv.style.display = 'block';
+    }
+
+    function showSuccess(msg) {
+        clearMessages();
+        const successDiv = document.getElementById('successMsg');
+        successDiv.innerText = msg;
+        successDiv.style.display = 'block';
+    }
+
+    function handleAuth() {
+        const email = document.getElementById('authEmail').value.trim();
+        const password = document.getElementById('authPassword').value.trim();
+        const name = document.getElementById('authName').value.trim();
+
+        console.log('handleAuth çağrıldı, modu:', isSignupMode);
+        console.log('Email:', email, 'Şifre:', password, 'Ad:', name);
+
+        if (!email || !password) {
+            showError('E-posta ve şifre gerekli!');
+            return;
+        }
+
+        // Her seferinde güncel allUsers'ı yükle
+        allUsers = JSON.parse(localStorage.getItem('focusUsers')) || [];
+
+        if (isSignupMode) {
+            if (!name) {
+                showError('Ad Soyad gerekli!');
+                return;
+            }
+
+            const userExists = allUsers.find(u => u.email === email);
+            if (userExists) {
+                showError('Bu e-posta zaten kayıtlı!');
+                return;
+            }
+
+            const newUser = { 
+                email, 
+                password, 
+                name,
+                id: generateUserId(),
+                friends: []
+            };
+            allUsers.push(newUser);
+            
+            console.log('Yeni kullanıcı ekleniyor:', newUser);
+            console.log('Tüm kullanıcılar:', allUsers);
+            
+            localStorage.setItem('focusUsers', JSON.stringify(allUsers));
+            localStorage.setItem(`focusKayitlar_${email}`, JSON.stringify([]));
+
+            showSuccess('✓ Kaydol başarılı! Giriş yapabilirsiniz.');
+            
+            // 1.5 saniye sonra giriş moduna dön
+            setTimeout(() => {
+                console.log('Kaydoldan giriş moduna geçiliyor');
+                isSignupMode = false;
+                document.getElementById('authTitle').innerText = 'Giriş Yap';
+                document.getElementById('authBtn').innerText = 'Giriş Yap';
+                document.getElementById('authName').style.display = 'none';
+                document.getElementById('toggleText').innerHTML = 'Hesabın yok mu? <a onclick="toggleAuthMode()">Kaydol</a>';
+                document.getElementById('authEmail').value = '';
+                document.getElementById('authPassword').value = '';
+                document.getElementById('authName').value = '';
+                clearMessages();
+            }, 1500);
+        } else {
+            console.log('Giriş deneniyor');
+            const user = allUsers.find(u => u.email === email && u.password === password);
+            if (!user) {
+                console.log('Kullanıcı bulunamadı. Kayıtlı kullanıcılar:', allUsers);
+                showError('E-posta veya şifre hatalı!');
+                return;
+            }
+
+            console.log('Giriş başarılı:', user);
+            currentUser = user;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            kayitlar = JSON.parse(localStorage.getItem(`focusKayitlar_${currentUser.email}`)) || [];
+            
+            showMainApp();
+            updateDersList();
+            calculateSessions();
+        }
+    }
+
+    function showAuthPage() {
+        document.getElementById('authPage').style.display = 'flex';
+        document.getElementById('mainApp').style.display = 'none';
+    }
+
+    function showMainApp() {
+        document.getElementById('authPage').style.display = 'none';
+        const mainApp = document.getElementById('mainApp');
+        mainApp.style.display = 'flex';
+        mainApp.style.height = '100vh';
+        document.getElementById('userNameDisplay').innerText = currentUser.name;
+        document.getElementById('userEmailDisplay').innerText = currentUser.email;
+        document.getElementById('userIdDisplay').innerText = currentUser.id;
+        updateFriendsList();
+    }
+
+    function logout() {
+        if (confirm('Çıkış yapmak istediğinizden emin misiniz?')) {
+            localStorage.removeItem('currentUser');
+            currentUser = null;
+            kayitlar = [];
+            clearInterval(timer);
+            isRunning = false;
+            showAuthPage();
+            isSignupMode = false;
+            document.getElementById('authTitle').innerText = 'Giriş Yap';
+            document.getElementById('authBtn').innerText = 'Giriş Yap';
+            document.getElementById('authName').style.display = 'none';
+            document.getElementById('authEmail').value = '';
+            document.getElementById('authPassword').value = '';
+            document.getElementById('authName').value = '';
+            clearMessages();
+        }
+    }
+
+    // ID Oluşturma
+    function generateUserId() {
+        return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+
+    // Arkadaş Ekleme
+    function addFriend() {
+        const friendId = document.getElementById('friendIdInput').value.trim();
+        
+        if (!friendId) {
+            alert('Lutfen arkadas ID sini girin!');
+            return;
+        }
+
+        // Kendini eklemeye çalışıyor mu kontrol et
+        if (friendId === currentUser.id) {
+            alert('Kendini arkadas olarak ekleyemezsin!');
+            document.getElementById('friendIdInput').value = '';
+            return;
+        }
+
+        // Arkadaş zaten eklenmişse kontrol et
+        if (currentUser.friends.includes(friendId)) {
+            alert('Bu arkadas zaten ekli!');
+            document.getElementById('friendIdInput').value = '';
+            return;
+        }
+
+        // Arkadaşı bul
+        const friend = allUsers.find(u => u.id === friendId);
+        if (!friend) {
+            alert('ID ile eslesen kullanici bulunamadi!');
+            document.getElementById('friendIdInput').value = '';
+            return;
+        }
+        // Arkadaş ekle
+        currentUser.friends.push(friendId);
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        localStorage.setItem('focusUsers', JSON.stringify(allUsers));
+
+        alert('Basarili! ' + friend.name + ' arkadas olarak eklendi!');
+        document.getElementById('friendIdInput').value = '';
+        updateFriendsList();
+        updateFriendSelect();
+    }
+
+    function updateFriendsList() {
+        const friendsList = document.getElementById('friendsList');
+        friendsList.innerHTML = '';
+
+        if (currentUser.friends.length === 0) {
+            friendsList.innerHTML = '<p style="margin: 0; font-size: 11px; color: #999;">Henuz arkadas yok</p>';
+            return;
+        }
+
+        currentUser.friends.forEach(friendId => {
+            const friend = allUsers.find(u => u.id === friendId);
+            if (friend) {
+                const friendDiv = document.createElement('div');
+                friendDiv.style.cssText = 'padding: 8px; background: rgba(255,255,255,0.1); border-radius: 5px; margin-bottom: 5px; font-size: 11px; display: flex; justify-content: space-between; align-items: center;';
+                friendDiv.innerHTML = '<span>' + friend.name + '<br><small>#' + friendId + '</small></span><button onclick="removeFriend(\'' + friendId + '\')" style="background: #d63031; color: white; border: none; border-radius: 3px; padding: 2px 6px; cursor: pointer; font-size: 10px;">X</button>';
+                friendsList.appendChild(friendDiv);
+            }
+        });
+    }
+
+    function removeFriend(friendId) {
+        if (confirm('Arkadasi kaldirmak istediginizden emin misiniz?')) {
+            currentUser.friends = currentUser.friends.filter(id => id !== friendId);
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            updateFriendsList();
+            updateFriendSelect();
+            if (viewingFriendData === friendId) {
+                switchViewMode();
+            }
+        }
+    }
+
+    function updateFriendSelect() {
+        const friendSelect = document.getElementById('friendSelect');
+        friendSelect.innerHTML = '<option value="">Arkadas Sec</option>';
+
+        currentUser.friends.forEach(friendId => {
+            const friend = allUsers.find(u => u.id === friendId);
+            if (friend) {
+                const option = document.createElement('option');
+                option.value = friendId;
+                option.innerText = friend.name + ' (#' + friendId + ')';
+                friendSelect.appendChild(option);
+            }
+        });
+    }
+
+    function switchViewMode() {
+        const viewMode = document.getElementById('viewModeSelect').value;
+        document.getElementById('friendSelect').style.display = viewMode === 'friend' ? 'block' : 'none';
+        
+        if (viewMode === 'own') {
+            viewingFriendData = null;
+            kayitlar = JSON.parse(localStorage.getItem('focusKayitlar_' + currentUser.email)) || [];
+        } else {
+            const friendId = document.getElementById('friendSelect').value;
+            if (friendId) {
+                switchFriend();
+            }
+        }
+        
+        if (document.getElementById('statsPage').classList.contains('active')) {
+            updateStats();
+        }
+    }
+
+    function switchFriend() {
+        const friendId = document.getElementById('friendSelect').value;
+        if (!friendId) {
+            viewingFriendData = null;
+            return;
+        }
+
+        const friend = allUsers.find(u => u.id === friendId);
+        if (friend) {
+            viewingFriendData = friendId;
+            kayitlar = JSON.parse(localStorage.getItem('focusKayitlar_' + friend.email)) || [];
+            updateStats();
+        }
+    }
+
+    // Sayfa değiştirme fonksiyonu
+    function showPage(pageId, element) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        element.classList.add('active');
+    }
+
+    // Toplam süre hesapla
+    function calculateSessions() {
+        const work = parseInt(document.getElementById('workMins').value) || 0;
+        const rest = parseInt(document.getElementById('restMins').value) || 0;
+        const sessions = parseInt(document.getElementById('sessions').value) || 0;
+        const dailyGoal = parseInt(document.getElementById('dailyGoal').value) || 8;
+        
+        if (work === 0 || sessions === 0) {
+            document.getElementById('progressPercentage').innerText = '0%';
+            document.getElementById('progressLabel').innerText = '0h / ' + dailyGoal + 'h';
+            return;
+        }
+        
+        // Toplam = (çalışma + mola) x seans - son mola
+        const total = (work + rest) * sessions - rest;
+        const totalHours = total / 60;
+        
+        // Gunluk hedefe gore yuzdeyi hesapla
+        const percentage = Math.min(100, Math.round((totalHours / dailyGoal) * 100));
+        
+        // Daireyi doldur
+        const circumference = 2 * Math.PI * 75; // 75 = radius
+        const strokeDashoffset = circumference - (percentage / 100) * circumference;
+        document.getElementById('progressCircle').style.strokeDashoffset = strokeDashoffset;
+        
+        // Yuzde ve label'i guncelle
+        document.getElementById('progressPercentage').innerText = percentage + '%';
+        document.getElementById('progressLabel').innerText = totalHours.toFixed(1) + 'h / ' + dailyGoal + 'h';
+    }
+
+    // İlk hesaplama
+    // window.addEventListener('DOMContentLoaded', calculateSessions); // DOMContentLoaded'de zaten çağrılıyor
+
+    // Dersleri güncelle
+    function updateDersList() {
+        if (!currentUser) return;
+        const uniqueDersler = [...new Set(kayitlar.map(k => k.ders))].filter(d => d);
+        const dersList = document.getElementById('dersList');
+        dersList.innerHTML = '';
+        
+        uniqueDersler.forEach(ders => {
+            const option = document.createElement('option');
+            option.value = ders;
+            dersList.appendChild(option);
+        });
+    }
+
+    function toggleTimer() {
+        const startBtn = document.getElementById('startBtn');
+        currentDers = document.getElementById('dersAdi').value || "Genel Çalışma";
+
+        if (isRunning) {
+            clearInterval(timer);
+            isRunning = false;
+            startBtn.innerText = "DEVAM ET";
+            startBtn.style.background = "#0984e3";
+        } else {
+            if (!timeLeft) {
+                timeLeft = document.getElementById('workMins').value * 60;
+                totalSessions = parseInt(document.getElementById('sessions').value) || 1;
+                currentSession = 1;
+            }
+            isRunning = true;
+            startBtn.innerText = "DURAKLAT";
+            startBtn.style.background = "#e17055";
+
+            timer = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    handleEnd();
+                }
+            }, 1000);
+        }
+    }
+
+    function updateDisplay() {
+        const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+        const s = (timeLeft % 60).toString().padStart(2, '0');
+        document.getElementById('timeDisplay').innerText = `${m}:${s}`;
+    }
+
+    function playBeep() {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.value = 800; // Frekans (Hz)
+        oscillator.type = 'sine';
+        
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.5);
+    }
+
+    function handleEnd() {
+        // Ses çal (3 kez)
+        playBeep();
+        setTimeout(() => playBeep(), 200);
+        setTimeout(() => playBeep(), 400);
+        
+        if (isWorking) {
+            // Kaydet
+            const sure = document.getElementById('workMins').value;
+            kayitlar.push({
+                ders: currentDers,
+                dakika: parseInt(sure),
+                tarih: new Date().toLocaleDateString('tr-TR')
+            });
+            localStorage.setItem(`focusKayitlar_${currentUser.email}`, JSON.stringify(kayitlar));
+            updateDersList(); // Yeni ders eklendiyse listeyi güncelle
+            
+            const msg = `Seans ${currentSession}/${totalSessions} Bitti! Mola Başlıyor.`;
+            alert(msg);
+            isWorking = false;
+            timeLeft = document.getElementById('restMins').value * 60;
+            document.body.style.background = "#55efc4";
+        } else {
+            currentSession++;
+            if (currentSession <= totalSessions) {
+                alert(`Mola Bitti! Seans ${currentSession}/${totalSessions} başlıyor.`);
+                isWorking = true;
+                timeLeft = document.getElementById('workMins').value * 60;
+                document.body.style.background = "#f8f9fa";
+            } else {
+                alert("🎉 Tüm Seanslar Tamamlandı!");
+                isWorking = true;
+                timeLeft = document.getElementById('workMins').value * 60;
+                document.body.style.background = "#f8f9fa";
+                resetAll();
+                return;
+            }
+        }
+        isRunning = false;
+        toggleTimer();
+    }
+
+    function updateStats() {
+        // 1. Ders bazlı listeyi oluştur
+        const dersOzet = {};
+        kayitlar.forEach(k => {
+            dersOzet[k.ders] = (dersOzet[k.ders] || 0) + k.dakika;
+        });
+
+        const listeHtml = document.getElementById('dersListesi');
+        listeHtml.innerHTML = "";
+        for (let ders in dersOzet) {
+            listeHtml.innerHTML += `
+                <div class="data-item" style="cursor: pointer;" onclick="showDersChart('${ders}')">
+                    <span><strong>${ders}</strong></span>
+                    <span>${dersOzet[ders]} Dakika</span>
+                </div>`;
+        }
+
+        // 2. Ders butonlarını oluştur
+        const buttonContainer = document.getElementById('dersButtonContainer');
+        buttonContainer.innerHTML = '';
+        for (let ders in dersOzet) {
+            const btn = document.createElement('button');
+            btn.className = 'chart-btn';
+            btn.innerText = ders;
+            btn.onclick = () => showDersChart(ders);
+            buttonContainer.appendChild(btn);
+        }
+
+        // 3. Grafiği Güncelle
+        drawChart(currentChartView);
+    }
+
+    function showDersChart(ders) {
+        selectedDers = ders;
+        
+        // Butonları aktif/pasif yap
+        document.querySelectorAll('#dersButtonContainer .chart-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.innerText === ders) btn.classList.add('active');
+        });
+
+        // Ders grafiğini çiz
+        const dersVerileri = kayitlar.filter(k => k.ders === ders);
+        if (dersVerileri.length === 0) {
+            document.getElementById('dersChart').style.display = 'none';
+            document.getElementById('noDataMsg').style.display = 'block';
+            return;
+        }
+
+        document.getElementById('noDataMsg').style.display = 'none';
+        document.getElementById('dersChart').style.display = 'block';
+        
+        let labels = [];
+        let grafikVerisi = [];
+        
+        // Son 7 gün
+        for(let i=6; i>=0; i--) {
+            let d = new Date(); 
+            d.setDate(d.getDate() - i);
+            labels.push(d.toLocaleDateString('tr-TR'));
+        }
+
+        grafikVerisi = labels.map(label => {
+            let d = new Date(label.split('.').reverse().join('-'));
+            return dersVerileri
+                .filter(k => k.tarih === label)
+                .reduce((t, k) => t + k.dakika, 0);
+        });
+
+        if (dersChart) dersChart.destroy();
+        const ctx = document.getElementById('dersChart').getContext('2d');
+        dersChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: `${ders} - Günlük Çalışma (Dakika)`,
+                    data: grafikVerisi,
+                    backgroundColor: '#6c5ce7',
+                    borderColor: '#6c5ce7'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true
+            }
+        });
+
+        document.getElementById('dersChartTitle').innerText = `${ders} - Son 7 Gün`;
+    }
+
+    function drawChart(view) {
+        currentChartView = view;
+        let labels = [];
+        let grafikVerisi = [];
+        let title = '';
+
+        if (view === 'daily') {
+            // Son 7 gün
+            title = 'Son 7 Günlük Performans';
+            for(let i=6; i>=0; i--) {
+                let d = new Date(); 
+                d.setDate(d.getDate() - i);
+                labels.push(d.toLocaleDateString('tr-TR'));
+            }
+        } else if (view === 'weekly') {
+            // Son 12 hafta
+            title = 'Son 12 Haftalık Performans';
+            for(let i=11; i>=0; i--) {
+                let d = new Date();
+                d.setDate(d.getDate() - (i * 7));
+                const year = d.getFullYear();
+                const week = Math.ceil((d.getDate() - d.getDay() + 1) / 7);
+                labels.push(`W${week}`);
+            }
+        } else if (view === 'monthly') {
+            // Son 12 ay
+            title = 'Son 12 Aylık Performans';
+            for(let i=11; i>=0; i--) {
+                let d = new Date();
+                d.setMonth(d.getMonth() - i);
+                labels.push(d.toLocaleDateString('tr-TR', { month: 'short', year: 'numeric' }));
+            }
+        }
+
+        // Veri hesapla
+        grafikVerisi = labels.map((label, idx) => {
+            let startDate, endDate;
+            
+            if (view === 'daily') {
+                startDate = new Date();
+                startDate.setDate(startDate.getDate() - (6 - idx));
+                endDate = new Date(startDate);
+                endDate.setDate(endDate.getDate() + 1);
+            } else if (view === 'weekly') {
+                startDate = new Date();
+                startDate.setDate(startDate.getDate() - ((11 - idx) * 7));
+                endDate = new Date(startDate);
+                endDate.setDate(endDate.getDate() + 7);
+            } else if (view === 'monthly') {
+                startDate = new Date();
+                startDate.setMonth(startDate.getMonth() - (11 - idx));
+                startDate.setDate(1);
+                endDate = new Date(startDate);
+                endDate.setMonth(endDate.getMonth() + 1);
+                endDate.setDate(0);
+            }
+
+            const startStr = startDate.toLocaleDateString('tr-TR');
+            const endStr = endDate.toLocaleDateString('tr-TR');
+
+            return kayitlar
+                .filter(k => {
+                    const kDate = new Date(k.tarih.split('.').reverse().join('-'));
+                    return kDate >= startDate && kDate < endDate;
+                })
+                .reduce((t, k) => t + k.dakika, 0);
+        });
+
+        if (myChart) myChart.destroy();
+        const ctx = document.getElementById('mainChart').getContext('2d');
+        myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Toplam Çalışma (Dakika)',
+                    data: grafikVerisi,
+                    borderColor: '#6c5ce7',
+                    tension: 0.4,
+                    fill: true,
+                    backgroundColor: 'rgba(108, 92, 231, 0.1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true
+            }
+        });
+
+        // Butonları güncelle
+        document.querySelectorAll('.chart-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+
+    function updateChartView(view) {
+        drawChart(view);
+    }
+
+    function resetAll() {
+        clearInterval(timer);
+        timeLeft = null;
+        isRunning = false;
+        isWorking = true;
+        currentSession = 0;
+        updateDisplay();
+        document.getElementById('startBtn').innerText = "BAŞLAT";
+        document.getElementById('startBtn').style.background = "#00b894";
+        document.body.style.background = "#f8f9fa";
+    }
+
+    // Takvim Fonksiyonları
+    function openCalendar() {
+        currentCalendarDate = new Date();
+        drawCalendar();
+        const modal = document.getElementById('calendarModal');
+        modal.style.display = 'flex';
+        modal.style.justifyContent = 'center';
+        modal.style.alignItems = 'center';
+    }
+
+    function closeCalendar() {
+        document.getElementById('calendarModal').style.display = 'none';
+        closeDayData();
+    }
+
+    function prevMonth() {
+        currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
+        drawCalendar();
+    }
+
+    function nextMonth() {
+        currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1);
+        drawCalendar();
+    }
+
+    function drawCalendar() {
+        const year = currentCalendarDate.getFullYear();
+        const month = currentCalendarDate.getMonth();
+        
+        // Ay adı ve yıl göster
+        const monthNames = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 
+                           'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+        document.getElementById('calendarMonth').innerText = `${monthNames[month]} ${year}`;
+
+        // Takvim grid'ini oluştur
+        const grid = document.getElementById('calendarGrid');
+        grid.innerHTML = '';
+
+        // Gün başlıkları
+        const dayNames = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
+        dayNames.forEach(day => {
+            const dayHeader = document.createElement('div');
+            dayHeader.style.cssText = 'padding: 10px; text-align: center; font-weight: bold; background: #f0f0f0; border-radius: 5px;';
+            dayHeader.innerText = day;
+            grid.appendChild(dayHeader);
+        });
+
+        // İlk günün haftanın hangi günü olduğunu bul
+        const firstDay = new Date(year, month, 1).getDay();
+        const adjustedFirstDay = firstDay === 0 ? 6 : firstDay - 1; // Pazardan Pazartesi'ye çevir
+        
+        // Ayın kaç gün olduğunu bul
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        // Boş hücreler (önceki ayın günleri)
+        for (let i = 0; i < adjustedFirstDay; i++) {
+            const emptyCell = document.createElement('div');
+            grid.appendChild(emptyCell);
+        }
+
+        // Ayın günleri
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayCell = document.createElement('div');
+            const currentDate = new Date(year, month, day);
+            const dateStr = currentDate.toLocaleDateString('tr-TR');
+            
+            // Bu günde çalışma olup olmadığını kontrol et
+            const hasWork = kayitlar.some(k => k.tarih === dateStr);
+            
+            let bgColor = '#f0f0f0';
+            let textColor = '#999';
+            if (hasWork) {
+                bgColor = '#00b894';
+                textColor = 'white';
+            }
+            
+            dayCell.style.cssText = `padding: 10px; text-align: center; border-radius: 5px; background: ${bgColor}; color: ${textColor}; cursor: pointer; font-weight: 500;`;
+            dayCell.innerText = day;
+            
+            dayCell.onclick = () => showDayData(dateStr);
+            grid.appendChild(dayCell);
+        }
+    }
+
+    function showDayData(dateStr) {
+        const dayData = kayitlar.filter(k => k.tarih === dateStr);
+        
+        if (dayData.length === 0) {
+            closeDayData();
+            return;
+        }
+
+        document.getElementById('selectedDayTitle').innerText = `${dateStr} - Çalışma Verileri`;
+        const tbody = document.getElementById('dayDataBody');
+        tbody.innerHTML = '';
+
+        dayData.forEach(item => {
+            const row = document.createElement('tr');
+            row.style.cssText = 'border-bottom: 1px solid #ddd;';
+            row.innerHTML = `
+                <td style="padding: 10px; border: 1px solid #ddd;">${item.ders}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">${item.dakika} dk</td>
+            `;
+            tbody.appendChild(row);
+        });
+
+        document.getElementById('selectedDayData').style.display = 'block';
+    }
+
+    function closeDayData() {
+        document.getElementById('selectedDayData').style.display = 'none';
+        document.getElementById('dayDataBody').innerHTML = '';
+    }
+</script>
+</body>
+</html>
