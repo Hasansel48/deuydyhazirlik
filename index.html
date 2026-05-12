@@ -280,6 +280,122 @@
   line-height: 1.6;
 }
 
+/* Modal Stili */
+.modal-overlay {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease-out;
+  position: relative;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 32px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  color: #ff5722;
+  transform: scale(1.2);
+}
+
+.modal-content h2 {
+  color: #ff9800;
+  margin-bottom: 15px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.modal-content p {
+  color: #333;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.modal-content ul {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.modal-content li {
+  margin: 8px 0;
+  color: #555;
+  text-align: left;
+}
+
+.modal-button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 40px;
+  background: linear-gradient(to right, #ff9800, #f44336);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+}
+
+.modal-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+}
+
 </style>
   <script>
     function calculateYear() {
@@ -405,10 +521,57 @@
     function closeMenu() {
       document.getElementById("sideMenu").style.width = "0";
     }
+
+    // Modal Fonksiyonları
+    function closeModal() {
+      document.getElementById('notificationModal').style.display = 'none';
+    }
+
+    window.addEventListener('load', function() {
+      // Sayfa yüklendikten 500ms sonra modalı göster
+      setTimeout(function() {
+        document.getElementById('notificationModal').style.display = 'flex';
+      }, 500);
+    });
+
+    // Modal dışına tıklanırsa kapat
+    document.addEventListener('click', function(event) {
+      const modal = document.getElementById('notificationModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    // ESC tuşu ile kapat
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
   </script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
+  <!-- Bildirim Modal -->
+  <div id="notificationModal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h2>📢 Önemli Duyuru</h2>
+      <p><strong>Sitemizdeki Hatalar Düzeltilmiştir</strong></p>
+      <p>Yanlışlıklar için özür dileriz. Hesaplama formülümüz güncellenmiştir:</p>
+      <ul>
+        <li>✅ Quiz: %20</li>
+        <li>✅ Vize: %60</li>
+        <li>✅ Sunum: %5</li>
+        <li>✅ Katılım: %5</li>
+        <li>✅ Ödev: %5</li>
+        <li>✅ Writing: %5</li>
+      </ul>
+      <p>Artık doğru şekilde hesaplama yapabilirsiniz.</p>
+      <button class="modal-button" onclick="closeModal()">Tamam</button>
+    </div>
+  </div>
+
   <div class="header">
     <h1>Fakirüni</h1>
     <div class="icons"></div>
