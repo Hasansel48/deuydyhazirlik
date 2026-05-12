@@ -18,8 +18,8 @@
   gtag('config', 'G-RLX3480SHS');
 </script>
 
-  <meta name="description" content="Dokuz Eylül Üniversitesi (DEÜ) Yabancı Diller Yüksekokulu öğrencileri için yıl içi notu, final notu ve geçme notunu hızlıca hesaplayabileceğiniz çevrimiçi araç." />
-  <meta name="keywords" content="Dokuz Eylül Üniversitesi, DEÜ, DEÜ hesaplama, DEÜ ortalama hesaplama, DEÜ YDY, YDY ortalama hesaplama, yıl içi not hesaplama, DEÜ final hesaplama, DEÜ geçme notu, DEÜ hazırlık ortalama hesaplama, Not Hesaplama, Hazırlık Sınıfı, Ortalama Hesaplama, Fakirüni,Fakir üniversitesi,fakirüniversitesi,fakiruni" />
+  <meta name="description" content="Dokuz Eylül Üniversitesi (DEÜ) Yabancı Diller Yüksekokulu öğrencileri için yıl içi notu, final notu ve geçme notunu hızlıca hesaplayabileceğiniz ücretsiz araçtır." />
+  <meta name="keywords" content="Dokuz Eylül Üniversitesi, DEÜ, DEÜ hesaplama, DEÜ ortalama hesaplama, DEÜ YDY, YDY ortalama hesaplama, yıl içi not hesaplama, DEÜ final hesaplama, DEÜ geçme notu" />
   <meta name="author" content="Hasan Sel" />
   <meta property="og:title" content="DEÜ YDY Not Hesaplama" />
   <meta property="og:description" content="DEÜ Hazırlık öğrencileri için not hesaplama uygulaması. Yıl içi ve final ortalamasını kolayca hesaplayın." />
@@ -180,12 +180,12 @@
     }
   input[type=number]::-webkit-outer-spin-button,
     input[type=number]::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+       -webkit-appearance: none;
+       margin: 0;
     }
 
     input[type=number] {
-      -moz-appearance: textfield;
+       -moz-appearance: textfield;
     }
   
   
@@ -269,16 +269,25 @@
   transform: translateX(-5px);
 }
 
+.formula-info {
+  background: #e3f2fd;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border-left: 4px solid #2196f3;
+  font-size: 13px;
+  color: #1565c0;
+  line-height: 1.6;
+}
 
 </style>
   <script>
     function calculateYear() {
+      // Tüm input ID'leri
       const ids = [
         'q1_1', 'q2_1', 'v1_1', 'v2_1', 'sunum_1', 'katilim_1', 'odev_1', 'writing_1',
         'q1_2', 'q2_2', 'v1_2', 'v2_2', 'sunum_2', 'katilim_2', 'odev_2', 'writing_2'
       ];
-      let total = 0;
-      let count = 0;
 
       // Tüm kutucuklar dolu mu kontrolü
       for (let id of ids) {
@@ -290,26 +299,78 @@
         }
       }
 
+      // Değerleri al ve valide et
+      const values = {};
       for (let id of ids) {
         const input = document.getElementById(id);
         const val = parseFloat(input.value);
-        if (!isNaN(val)) {
-          if (val < 0 || val > 100) {
-            alert("Lütfen 0 ile 100 arasında bir değer giriniz.");
-            input.focus();
-            return;
-          }
-          total += val;
-          count++;
+        
+        if (isNaN(val)) {
+          alert("Geçersiz değer girdiniz.");
+          input.focus();
+          return;
         }
+        
+        if (val < 0 || val > 100) {
+          alert("Lütfen 0 ile 100 arasında bir değer giriniz.");
+          input.focus();
+          return;
+        }
+        
+        values[id] = val;
       }
-      const average = count > 0 ? (total / count) : 0;
+
+      // Ortalamalar hesapla
+      // Quiz: 2 dönem × 2 quiz = 4 quiz toplam
+      const quizAverage = (values.q1_1 + values.q2_1 + values.q1_2 + values.q2_2) / 4;
+      
+      // Vize: 2 dönem × 2 vize = 4 vize toplam
+      const vizAverage = (values.v1_1 + values.v2_1 + values.v1_2 + values.v2_2) / 4;
+      
+      // Sunum: 2 dönem
+      const sunumAverage = (values.sunum_1 + values.sunum_2) / 2;
+      
+      // Katılım: 2 dönem
+      const katilimAverage = (values.katilim_1 + values.katilim_2) / 2;
+      
+      // Ödev: 2 dönem
+      const odevAverage = (values.odev_1 + values.odev_2) / 2;
+      
+      // Writing: 2 dönem
+      const writingAverage = (values.writing_1 + values.writing_2) / 2;
+
+      // ⭐ YENİ FORMÜL
+      // Yıl İçi Notu = (Quiz × 0.20) + (Vize × 0.60) + (Sunum × 0.05) + (Katılım × 0.05) + (Ödev × 0.05) + (Writing × 0.05)
+      const yearGrade = (quizAverage * 0.20) + 
+                        (vizAverage * 0.60) + 
+                        (sunumAverage * 0.05) + 
+                        (katilimAverage * 0.05) + 
+                        (odevAverage * 0.05) + 
+                        (writingAverage * 0.05);
+
       let threshold = 85;
       const selectedKur = document.getElementById('kurSecimi').value;
       if (selectedKur === 'B') threshold = 80;
       else if (selectedKur === 'C') threshold = 75;
-      const resultText = `Yıl İçi Ortalamanız: ${average.toFixed(2)}<br>` +
-                         `Durum: ${average >= threshold ? 'Geçtiniz ✔️' : 'Finale Kaldınız ❌'}`;
+
+      const resultText = `
+        <div style="text-align: center;">
+          <h3 style="color: #1a237e; margin-bottom: 15px;">Hesaplama Sonuçları</h3>
+          <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+            <p style="margin: 5px 0;"><strong>Quiz Ortalaması:</strong> ${quizAverage.toFixed(2)} × 20% = ${(quizAverage * 0.20).toFixed(2)}</p>
+            <p style="margin: 5px 0;"><strong>Vize Ortalaması:</strong> ${vizAverage.toFixed(2)} × 60% = ${(vizAverage * 0.60).toFixed(2)}</p>
+            <p style="margin: 5px 0;"><strong>Sunum Ortalaması:</strong> ${sunumAverage.toFixed(2)} × 5% = ${(sunumAverage * 0.05).toFixed(2)}</p>
+            <p style="margin: 5px 0;"><strong>Katılım Ortalaması:</strong> ${katilimAverage.toFixed(2)} × 5% = ${(katilimAverage * 0.05).toFixed(2)}</p>
+            <p style="margin: 5px 0;"><strong>Ödev Ortalaması:</strong> ${odevAverage.toFixed(2)} × 5% = ${(odevAverage * 0.05).toFixed(2)}</p>
+            <p style="margin: 5px 0;"><strong>Writing Ortalaması:</strong> ${writingAverage.toFixed(2)} × 5% = ${(writingAverage * 0.05).toFixed(2)}</p>
+          </div>
+          <h2 style="color: #0072ff; font-size: 24px; margin: 15px 0;">Yıl İçi Ortalaması: ${yearGrade.toFixed(2)}</h2>
+          <p style="font-size: 16px; color: ${yearGrade >= threshold ? '#4caf50' : '#f44336'}; font-weight: bold;">
+            ${yearGrade >= threshold ? '✅ Geçtiniz!' : '❌ Finale Kaldınız!'}
+          </p>
+        </div>
+      `;
+      
       document.getElementById('result').innerHTML = resultText;
     }
 
@@ -328,44 +389,51 @@
       const finalWeighted = finalGrade * 0.6;
       const overall = yearWeighted + finalWeighted;
       const result = document.getElementById('finalResult');
-      result.innerHTML = `Yıl Sonu: ${yearGrade.toFixed(2)}<br>` +
-                         `Final: ${finalGrade.toFixed(2)}<br>` +
-                         `Ortalama: ${overall.toFixed(2)}`;
+      result.innerHTML = `
+        <div style="background: #f5f5f5; padding: 15px; border-radius: 8px;">
+          <p><strong>Yıl Sonu:</strong> ${yearGrade.toFixed(2)} × 40% = ${yearWeighted.toFixed(2)}</p>
+          <p><strong>Final:</strong> ${finalGrade.toFixed(2)} × 60% = ${finalWeighted.toFixed(2)}</p>
+          <h3 style="color: #0072ff; margin-top: 15px;">Ortalama: ${overall.toFixed(2)}</h3>
+        </div>
+      `;
     }
-    function openMenu() {
-    document.getElementById("sideMenu").style.width = "260px";
-  }
 
-  function closeMenu() {
-    document.getElementById("sideMenu").style.width = "0";
-  }
+    function openMenu() {
+      document.getElementById("sideMenu").style.width = "260px";
+    }
+
+    function closeMenu() {
+      document.getElementById("sideMenu").style.width = "0";
+    }
   </script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
   <div class="header">
-    
     <h1>Fakirüni</h1>
-    <div class="icons">
-      
-      
-
-    </div>
-     <span class="menu-toggle" onclick="openMenu()"><i class="fas fa-bars"></i></span>
-</div>
+    <div class="icons"></div>
+    <span class="menu-toggle" onclick="openMenu()"><i class="fas fa-bars"></i></span>
   </div>
 
   <div class="main-wrapper">
     <div class="container">
       <h2 style="text-align:center; font-size: 28px; margin-bottom: 10px; color:#1a237e; text-shadow: 0 1px 3px rgba(0,0,0,0.2);">DEÜ YDY Ortalama Hesaplama</h2>
-<label style="display:block; text-align:center; margin-bottom: 20px; font-weight:bold;">Kur Seçiniz:
-  <select id="kurSecimi" style="margin-left: 10px; padding: 5px 10px; border-radius: 6px;">
-    <option value="A">A</option>
-    <option value="B">B</option>
-    <option value="C">C</option>
-  </select>
-</label>
-<h2>1. Dönem Not Girişi</h2>
+      
+      <div class="formula-info">
+        <strong>📊 Hesaplama Formülü:</strong><br>
+        Yıl İçi = (Quiz Ort. × 20%) + (Vize Ort. × 60%) + (Sunum × 5%) + (Katılım × 5%) + (Ödev × 5%) + (Writing × 5%)
+      </div>
+
+      <label style="display:block; text-align:center; margin-bottom: 20px; font-weight:bold;">
+        Kur Seçiniz:
+        <select id="kurSecimi" style="margin-left: 10px; padding: 5px 10px; border-radius: 6px;">
+          <option value="A">A (Geçme: 85)</option>
+          <option value="B">B (Geçme: 80)</option>
+          <option value="C">C (Geçme: 75)</option>
+        </select>
+      </label>
+
+      <h2>1. Dönem Not Girişi</h2>
       <div class="inputs">
         <label>Quiz 1: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="q1_1" min="0" max="100"></label>
         <label>Quiz 2: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="q2_1" min="0" max="100"></label>
@@ -388,80 +456,87 @@
         <label>Ödev: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="odev_2" min="0" max="100"></label>
         <label>Writing: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="writing_2" min="0" max="100"></label>
       </div>
+
       <button onclick="calculateYear()">Yıl İçi Ortalamasını Hesapla</button>
       <div id="result" class="result"></div>
     </div>
-
-    
-</div>
-<div class="final-container-comments">
-  <div class="final-container">
-    <h2>Final Hesaplama</h2>
-    <label>Yıl Sonu Notunuz: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="yearGrade" min="0" max="100"></label><br><br>
-    <label>Final Notunuz: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="finalGrade" min="0" max="100"></label><br><br>
-    <button onclick="calculateFinal()">Finalle Ortalamayı Hesapla</button>
-    <div id="finalResult" class="result"></div>
   </div>
-  <div class="comment-section" style="margin-top: 30px;">
-    <h2 style="text-align:center; color: #37474f; margin-bottom: 20px;">Yorumlar</h2>
-    <div class="commentbox" data-project-id="5724459575017472-proj"></div>
-    <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
-    <script>commentBox('5724459575017472-proj');</script>
-  </div>
- 
 
-<!-- SSS BÖLÜMÜ -->
-<section style="
-  display: block;
-  width: 100%;
-  flex: 0 0 100%;
-  max-width: 960px;
-  margin: 60px auto;
-  padding: 30px 25px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  font-size: 15px;
-  line-height: 1.6;
-  color: #333;
-  box-sizing: border-box;
-  clear: both;
-">
-  <h2 style="text-align: center; color: #1a237e; margin-bottom: 20px;">Sıkça Sorulan Sorular (SSS)</h2>
+  <div class="final-container-comments">
+    <div class="final-container">
+      <h2>Final Hesaplama</h2>
+      <label>Yıl Sonu Notunuz: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="yearGrade" min="0" max="100"></label><br><br>
+      <label>Final Notunuz: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="finalGrade" min="0" max="100"></label><br><br>
+      <button onclick="calculateFinal()">Finalle Ortalamayı Hesapla</button>
+      <div id="finalResult" class="result"></div>
+    </div>
 
-  <h3>Bu site ne işe yarar?</h3>
-  <p>
-    Fakirüni, Dokuz Eylül Üniversitesi Yabancı Diller Yüksekokulu (DEÜ YDY) öğrencileri için hazırlanmış bir not hesaplama aracıdır. Öğrenciler bu platform sayesinde finalsiz geçip geçemeyeceklerini ya da finalden kaç almaları gerektiğini kolayca öğrenebilir.
-  </p>
+    <div class="comment-section" style="margin-top: 30px;">
+      <h2 style="text-align:center; color: #37474f; margin-bottom: 20px;">Yorumlar</h2>
+      <div class="commentbox" data-project-id="5724459575017472-proj"></div>
+      <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+      <script>commentBox('5724459575017472-proj');</script>
+    </div>
 
-  <h3>Puanlama nasıl yapılır?</h3>
-  <p>
-    Her iki döneme ait quiz, vize, writing, ödev, sunum ve katılım notları yıl içi ortalamasını oluşturur. Daha sonra yıl içi notunun %40'ı ve final notunun %60'ı alınarak toplam yıl sonu ortalaması hesaplanır. Sistem, öğrencinin kuruna göre geçme durumunu da otomatik olarak gösterir.
-  </p>
+    <!-- SSS BÖLÜMÜ -->
+    <section style="
+      display: block;
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 960px;
+      margin: 60px auto;
+      padding: 30px 25px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 15px;
+      line-height: 1.6;
+      color: #333;
+      box-sizing: border-box;
+      clear: both;
+    ">
+      <h2 style="text-align: center; color: #1a237e; margin-bottom: 20px;">Sıkça Sorulan Sorular (SSS)</h2>
 
-  <h3>Bu site resmi mi?</h3>
-  <p>
-    Hayır. Bu site herhangi bir resmi kurumla bağlantılı değildir. DEÜ öğrencileri tarafından bağımsız olarak oluşturulmuş bir projedir. Hesaplamalarda küçük sapmalar olabilir; bu nedenle sonuçlar yalnızca bilgilendirme amaçlıdır. Herhangi bir geri bildiriminiz varsa yorum kısmından veya <a href="mailto:slhsn48@gmail.com">iletişim</a> adresinden bize ulaşabilirsiniz.
-  </p>
+      <h3>Bu site ne işe yarar?</h3>
+      <p>
+        Fakirüni, Dokuz Eylül Üniversitesi Yabancı Diller Yüksekokulu (DEÜ YDY) öğrencileri için hazırlanmış bir not hesaplama aracıdır. Öğrenciler bu platform sayesinde finalsiz geçip geçmeyeceklerini veya final notunun geçmelerine etkisini kolayca hesaplayabilirler.
+      </p>
 
-  <p style="text-align: center; font-style: italic; margin-top: 25px;">
-    “Fakirüni – Fakir üniversitelinin zekâsı çözümdür.”
-  </p>
-</section>
-
-<!-- Menü Paneli (body içine, yorum kutusunun altına ya da en sona) -->
-<div id="sideMenu" class="side-menu">
-  <div class="menu-header">
-    <span class="close-btn" onclick="closeMenu()">&times;</span>
-    <h3>Menü</h3>
-  </div>
-  <a href="/">Ana Sayfa</a>
-  <a href="/hakkimizda.html">Hakkımızda</a>
-  <a href="/yazokullari.html">Yaz Okulları Haritası</a>
-  <a href="/telegram-botlar.html">Telegram Botlarımız</a>
-  <a href="mailto:slhsn48@gmail.com">İletişim</a>
-</div>
-
+      <h3>Puanlama nasıl yapılır?</h3>
+      <p>
+        <strong>Yıl İçi Ortalaması Hesaplaması:</strong><br>
+        • Quiz Ortalaması × %20<br>
+        • Vize Ortalaması × %60<br>
+        • Sunum Ortalaması × %5<br>
+        • Katılım Ortalaması × %5<br>
+        • Ödev Ortalaması × %5<br>
+        • Writing Ortalaması × %5<br><br>
         
+        Daha sonra yıl içi notunun %40'ı ve final notunun %60'ı alınarak toplam yıl sonu notu hesaplanır.
+      </p>
+
+      <h3>Bu site resmi mi?</h3>
+      <p>
+        Hayır. Bu site herhangi bir resmi kurumla bağlantılı değildir. DEÜ öğrencileri tarafından bağımsız olarak oluşturulmuş bir projedir. Hesaplamalarda küçük sapmalar olabilir; bu nedenle kesin sonuçlar için akademik danışmanınıza danışmanız önerilir.
+      </p>
+
+      <p style="text-align: center; font-style: italic; margin-top: 25px;">
+        "Fakirüni – Fakir üniversitelinin zekâsı çözümdür."
+      </p>
+    </section>
+  </div>
+
+  <!-- Menü Paneli -->
+  <div id="sideMenu" class="side-menu">
+    <div class="menu-header">
+      <span class="close-btn" onclick="closeMenu()">&times;</span>
+      <h3>Menü</h3>
+    </div>
+    <a href="/">Ana Sayfa</a>
+    <a href="/hakkimizda.html">Hakkımızda</a>
+    <a href="/yazokullari.html">Yaz Okulları Haritası</a>
+    <a href="/telegram-botlar.html">Telegram Botlarımız</a>
+    <a href="mailto:slhsn48@gmail.com">İletişim</a>
+  </div>
 </body>
 </html>
