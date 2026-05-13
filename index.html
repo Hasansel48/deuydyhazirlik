@@ -19,8 +19,8 @@
   </script>
 
   <!-- Meta Etiketleri - SEO Optimizasyonu -->
-  <meta name="description" content="DEÜ YDY not hesaplama aracı ile yıl içi, vize ve final notlarınızı kolayca hesaplayın. Dokuz Eylül Üniversitesi Yabancı Diller Yüksekokulu öğrencileri için geliştirilmiş kapsamlı rehber ve formüllerle birlikte." />
-  <meta name="keywords" content="DEÜ not hesaplama, DEÜ YDY ortalama, not ortalaması hesaplama, yıl içi notu, final notu, hazırlık sınıfı, Dokuz Eylül Üniversitesi, YDY formülü, geçme notu" />
+  <meta name="description" content="DEÜ YDY not hesaplama aracı ile yıl içi, vize ve final notlarınızı kolayca hesaplayın. Dokuz Eylül Üniversitesi Yabancı Diller Yüksekokulu öğrencileri için profesyonel not hesaplama platformu.">
+  <meta name="keywords" content="DEÜ not hesaplama, DEÜ YDY ortalama, not ortalaması hesaplama, yıl içi notu, final notu, hazırlık sınıfı, Dokuz Eylül Üniversitesi, YDY formülü, geçme notu">
   <meta name="author" content="Hasan Sel" />
   <meta name="robots" content="index, follow" />
   <meta name="language" content="Turkish" />
@@ -28,7 +28,7 @@
   
   <!-- Open Graph - Sosyal Medya Optimizasyonu -->
   <meta property="og:title" content="DEÜ YDY Not Hesaplama - Yıl İçi ve Final Notu Hesapla" />
-  <meta property="og:description" content="Dokuz Eylül Üniversitesi Yabancı Diller Yüksekokulu öğrencileri için akıllı not hesaplama aracı. Quiz, vize, sunum ve ödev notlarınızı girin, anında sonuçları görun." />
+  <meta property="og:description" content="Dokuz Eylül Üniversitesi Yabancı Diller Yüksekokulu öğrencileri için akıllı not hesaplama aracı. Quiz, vize, sunum ve ödev notlarınızı girin." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://fakiruni.xyz" />
   <meta property="og:image" content="https://fakiruni.xyz/assets/logo.png" />
@@ -176,10 +176,25 @@
       align-self: center;
     }
 
-    h1, h2, h3 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 25px;
+    h1 {
+      font-size: 32px;
+      color: #1a237e;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #1a237e;
+      margin-bottom: 15px;
+      margin-top: 25px;
+    }
+
+    h3 {
+      font-size: 18px;
+      color: #ff9800;
+      margin-bottom: 10px;
+      margin-top: 25px;
     }
 
     .inputs {
@@ -328,6 +343,7 @@
       color: #eee;
       display: block;
       transition: background 0.3s, transform 0.2s;
+      title: "Menüye git";
     }
 
     .side-menu a:hover {
@@ -575,7 +591,7 @@
           </div>
           <h2 style="color: #0072ff; font-size: 24px; margin: 15px 0;">Yıl İçi Ortalaması: ${yearGrade.toFixed(2)}</h2>
           <p style="font-size: 16px; color: ${yearGrade >= threshold ? '#4caf50' : '#f44336'}; font-weight: bold;">
-            ${yearGrade >= threshold ? '✅ Geçtiniz!' : '❌ Finale Kaldınız!'}
+            ${yearGrade >= threshold ? '✅ Geçtiniz!' : '❌ Finale kaldınız!'}
           </p>
         </div>
       `;
@@ -603,6 +619,7 @@
           <p><strong>Yıl Sonu:</strong> ${yearGrade.toFixed(2)} × 40% = ${yearWeighted.toFixed(2)}</p>
           <p><strong>Final:</strong> ${finalGrade.toFixed(2)} × 60% = ${finalWeighted.toFixed(2)}</p>
           <h3 style="color: #0072ff; margin-top: 15px;">Ortalama: ${overall.toFixed(2)}</h3>
+          <p style="margin-top: 15px; font-size: 14px; color: #666;">Başka notlar hesaplamak ister misiniz? Sayfaya geri dönüp yeni değerler girerek başka senaryoları deneyebilirsiniz.</p>
         </div>
       `;
     }
@@ -645,10 +662,10 @@
   <!-- Bildirim Modal -->
   <div id="notificationModal" class="modal-overlay">
     <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()">✕</button>
+      <button class="modal-close" onclick="closeModal()" title="Kapat">✕</button>
       <h2>📢 Önemli Duyuru</h2>
       <p><strong>Sitemizdeki Hatalar Düzeltilmiştir</strong></p>
-      <p>Yanlışlıklar için özür dileriz. Hesaplama formülümüz güncellenmiştir:</p>
+      <p>Hatalı hesaplamalar için özür dileriz. Hesaplama formülümüz güncellenmiştir:</p>
       <ul>
         <li>✅ Quiz: %20</li>
         <li>✅ Vize: %60</li>
@@ -665,19 +682,19 @@
   <div class="header">
     <h1>Fakirüni</h1>
     <div class="icons"></div>
-    <span class="menu-toggle" onclick="openMenu()"><i class="fas fa-bars"></i></span>
+    <span class="menu-toggle" onclick="openMenu()" title="Menüyü aç"><i class="fas fa-bars"></i></span>
   </div>
 
   <div class="main-wrapper">
     <div class="container">
-      <h1 style="text-align:center; font-size: 32px; margin-bottom: 10px; color:#1a237e; text-shadow: 0 1px 3px rgba(0,0,0,0.2);">DEÜ YDY Ortalama Hesaplama Aracı</h1>
+      <h1>DEÜ YDY Ortalama Hesaplama Aracı</h1>
       
       <p style="text-align: center; color: #666; font-size: 16px; margin-bottom: 20px;">
         Dokuz Eylül Üniversitesi Yabancı Diller Yüksekokulu öğrencileri için geliştirilmiş, hızlı ve güvenilir not hesaplama platformu
       </p>
 
       <div class="info-box">
-        <strong>ℹ️ Hakkında:</strong> Fakirüni, DEÜ hazırlık sınıfı öğrencilerinin akademik performanslarını takip etmelerine yardımcı olan ücretsiz bir web uygulamasıdır. Bu platform sayesinde yıl içi ortalaması, final notu ve genel ortalamanızı anında hesaplayabilirsiniz.
+        <strong>ℹ️ Hakkında:</strong> Fakirüni, DEÜ hazırlık sınıfı öğrencilerinin akademik performanslarını takip etmelerine yardımcı olan ücretsiz bir web uygulamasıdır. Karmaşık not hesaplamalarını saniyeler içinde yaparak zaman kaybı yaşatmaz.
       </div>
 
       <div class="formula-info">
@@ -687,7 +704,7 @@
 
       <label style="display:block; text-align:center; margin-bottom: 20px; font-weight:bold;">
         Kur Seçiniz:
-        <select id="kurSecimi" style="margin-left: 10px; padding: 5px 10px; border-radius: 6px;">
+        <select id="kurSecimi" style="margin-left: 10px; padding: 5px 10px; border-radius: 6px;" title="Ders kurunu seçin">
           <option value="A">A Kuru (Geçme: 85)</option>
           <option value="B">B Kuru (Geçme: 80)</option>
           <option value="C">C Kuru (Geçme: 75)</option>
@@ -697,30 +714,30 @@
       <h2>1. Dönem Not Girişi</h2>
       <p style="text-align: center; color: #666; font-size: 14px;">Birinci dönemde aldığınız tüm notları aşağıdaki alanlara giriniz</p>
       <div class="inputs">
-        <label>Quiz 1: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="q1_1" min="0" max="100"></label>
-        <label>Quiz 2: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="q2_1" min="0" max="100"></label>
-        <label>Vize 1: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="v1_1" min="0" max="100"></label>
-        <label>Vize 2: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="v2_1" min="0" max="100"></label>
-        <label>Sunum: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="sunum_1" min="0" max="100"></label>
-        <label>Katılım: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="katilim_1" min="0" max="100"></label>
-        <label>Ödev: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="odev_1" min="0" max="100"></label>
-        <label>Writing: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="writing_1" min="0" max="100"></label>
+        <label>Quiz 1: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="q1_1" min="0" max="100" title="Birinci quiz notunuzu giriniz"></label>
+        <label>Quiz 2: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="q2_1" min="0" max="100" title="İkinci quiz notunuzu giriniz"></label>
+        <label>Vize 1: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="v1_1" min="0" max="100" title="Birinci vize notunuzu giriniz"></label>
+        <label>Vize 2: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="v2_1" min="0" max="100" title="İkinci vize notunuzu giriniz"></label>
+        <label>Sunum: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="sunum_1" min="0" max="100" title="Sunum notunuzu giriniz"></label>
+        <label>Katılım: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="katilim_1" min="0" max="100" title="Katılım notunuzu giriniz"></label>
+        <label>Ödev: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="odev_1" min="0" max="100" title="Ödev notunuzu giriniz"></label>
+        <label>Writing: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="writing_1" min="0" max="100" title="Writing notunuzu giriniz"></label>
       </div>
 
       <h2>2. Dönem Not Girişi</h2>
       <p style="text-align: center; color: #666; font-size: 14px;">İkinci dönemde aldığınız tüm notları aşağıdaki alanlara giriniz</p>
       <div class="inputs">
-        <label>Quiz 1: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="q1_2" min="0" max="100"></label>
-        <label>Quiz 2: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="q2_2" min="0" max="100"></label>
-        <label>Vize 1: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="v1_2" min="0" max="100"></label>
-        <label>Vize 2: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="v2_2" min="0" max="100"></label>
-        <label>Sunum: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="sunum_2" min="0" max="100"></label>
-        <label>Katılım: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="katilim_2" min="0" max="100"></label>
-        <label>Ödev: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="odev_2" min="0" max="100"></label>
-        <label>Writing: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="writing_2" min="0" max="100"></label>
+        <label>Quiz 1: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="q1_2" min="0" max="100" title="Birinci quiz notunuzu giriniz"></label>
+        <label>Quiz 2: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="q2_2" min="0" max="100" title="İkinci quiz notunuzu giriniz"></label>
+        <label>Vize 1: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="v1_2" min="0" max="100" title="Birinci vize notunuzu giriniz"></label>
+        <label>Vize 2: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="v2_2" min="0" max="100" title="İkinci vize notunuzu giriniz"></label>
+        <label>Sunum: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="sunum_2" min="0" max="100" title="Sunum notunuzu giriniz"></label>
+        <label>Katılım: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="katilim_2" min="0" max="100" title="Katılım notunuzu giriniz"></label>
+        <label>Ödev: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="odev_2" min="0" max="100" title="Ödev notunuzu giriniz"></label>
+        <label>Writing: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="writing_2" min="0" max="100" title="Writing notunuzu giriniz"></label>
       </div>
 
-      <button onclick="calculateYear()">Yıl İçi Ortalamasını Hesapla</button>
+      <button onclick="calculateYear()" title="Yıl içi ortalamasını hesapla">Yıl İçi Ortalamasını Hesapla</button>
       <div id="result" class="result"></div>
     </div>
   </div>
@@ -729,9 +746,9 @@
     <div class="final-container">
       <h2>Final Ortalaması Hesapla</h2>
       <p style="font-size: 14px; color: #666;">Yıl sonu ve final notlarınızı giriniz</p>
-      <label>Yıl Sonu Notunuz: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="yearGrade" min="0" max="100"></label><br><br>
-      <label>Final Notunuz: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="finalGrade" min="0" max="100"></label><br><br>
-      <button onclick="calculateFinal()">Finalle Ortalamayı Hesapla</button>
+      <label>Yıl Sonu Notunuz: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="yearGrade" min="0" max="100" title="Yıl sonu notunuzu giriniz"></label><br><br>
+      <label>Final Notunuz: <input type="number" inputmode="decimal" style="-moz-appearance: textfield;" step="0.01" id="finalGrade" min="0" max="100" title="Final notunuzu giriniz"></label><br><br>
+      <button onclick="calculateFinal()" title="Finalle ortalamayı hesapla">Finalle Ortalamayı Hesapla</button>
       <div id="finalResult" class="result"></div>
     </div>
 
@@ -742,56 +759,56 @@
       <div class="content-section">
         <h3>Dokuz Eylül Üniversitesi Yabancı Diller Yüksekokulu Nedir?</h3>
         <p>
-          Dokuz Eylül Üniversitesi (DEÜ), İzmir'de bulunan ve Türkiye'nin önemli devlet üniversitelerinden biridir. Yabancı Diller Yüksekokulu (YDY) ise bu üniversite bünyesinde uluslararası dil eğitimi veren prestijli bir bölümdür. Hazırlık sınıfı öğrencileri, burada yoğun bir İngilizce eğitimi alarak ana programlarına hazırlanmaktadırlar.
+          Dokuz Eylül Üniversitesi (DEÜ), İzmir'de bulunan ve Türkiye'nin önemli devlet üniversitelerinden biridir. Yabancı Diller Yüksekokulu (YDY) ise bu üniversite bünyesinde uluslararası standartlarda dil eğitimi sağlayan prestijli bir kurumdur.
         </p>
       </div>
 
       <div class="content-section">
         <h3>Hazırlık Sınıfı Not Sistemi Nasıl Çalışır?</h3>
         <p>
-          DEÜ YDY hazırlık sınıfında öğrenciler, yıl içinde birden fazla değerlendirme yönteminden not alırlar. Bu notlar farklı ağırlıklarla toplanarak yıl içi ortalaması oluşturulur. Yıl içi ortalamanız, final sınavı notunuzla birleştirilerek son ortalamanız hesaplanır. Bazı kuzularda minimum geçme notu 85 iken, diğer kuzularda 80 veya 75 olabilir.
+          DEÜ YDY hazırlık sınıfında öğrenciler yıl içinde birden fazla değerlendirme yönteminden not alırlar. Bu notlar farklı ağırlıklarla toplanarak yıl içi ortalaması oluşturulur.
         </p>
       </div>
 
       <div class="content-section">
         <h3>Quiz Notları ve Ağırlığı (%20)</h3>
         <p>
-          Quiz sınavları, öğrencilerin öğrendikleri materyali ne kadar iyi anlıklarını ölçen kısa sınavlardır. DEÜ YDY'de her dönem iki quiz yapılır ve bu notlar yıl içi ortalamasının %20'sini oluşturur. Quiz sonuçları, öğrencilerin ders katılımlarını ve motivasyonlarını göstermesi açısından önemlidir.
+          Quiz sınavları, öğrencilerin öğrendikleri materyali ne kadar iyi anladıklarını ölçen kısa sınavlardır. DEÜ YDY'de her dönem iki quiz yapılır ve bu notlar yıl içi ortalamasının %20'sini oluşturur.
         </p>
       </div>
 
       <div class="content-section">
         <h3>Vize Sınavları ve Ağırlığı (%60)</h3>
         <p>
-          Vize sınavları, dönem ortasında yapılan daha kapsamlı sınavlardır. Yıl içi ortalamasında en yüksek ağırlığa sahip olan vize notları (%60), öğrencilerin genel başarısını büyük ölçüde belirler. Her dönem iki vize sınavı yapılır ve ortalamları hesaplamada kullanılır. Vize notları, öğrencilerin hazırlık sınıfından başarıyla çıkıp çıkamayacaklarını belirleyen en önemli faktörlerdendir.
+          Vize sınavları dönem ortasında yapılan daha kapsamlı sınavlardır. Yıl içi ortalamasında en yüksek ağırlığa sahip olan vize notları (%60), öğrencilerin genel başarısını belirleyici rol oynar.
         </p>
       </div>
 
       <div class="content-section">
         <h3>Sunum Değerlendirmesi (%5)</h3>
         <p>
-          Sunum notları, öğrencilerin halka konuşma ve sunumu yapma yeteneklerini değerlendirir. DEÜ YDY programında, öğrenciler belirli konularda İngilizce sunumlar yaparlar. Bu aktiviteler, yıl içi ortalamasının %5'ini oluşturur ve öğrencilerin iletişim becerilerini geliştirmelerine yardımcı olur.
+          Sunum notları öğrencilerin halka konuşma ve sunumu yapma yeteneklerini değerlendirir. DEÜ YDY programında öğrenciler belirli konularda İngilizce sunumlar yaparlar ve bu aktiviteler yıl içi ortalamasının %5'ini oluşturur.
         </p>
       </div>
 
       <div class="content-section">
         <h3>Katılım Notu (%5)</h3>
         <p>
-          Ders katılımı, öğrencilerin devam durumu, ders sırasında aktif katılımı ve tartışmalara katılması gibi faktörleri içerir. Katılım notu, yıl içi ortalamasının %5'ini oluşturur. Düzenli ders katılımı ve aktif katılım, akademik başarı için çok önemlidir.
+          Ders katılımı öğrencilerin devam durumu, ders sırasında aktif katılımı ve tartışmalara katılması gibi faktörleri içerir. Katılım notu yıl içi ortalamasının %5'ini temsil eder.
         </p>
       </div>
 
       <div class="content-section">
         <h3>Ödev ve Proje Çalışmaları (%5)</h3>
         <p>
-          Ödevi başarıyla tamamlamak, öğrencilerin araştırma ve analiz yeteneklerini geliştirmelerine yardımcı olur. DEÜ YDY'de verilen ödevler, dersin ana konularını pekiştirmeye ve öğrencilerin bağımsız çalışmalarını teşvik etmeye yönelik olarak tasarlanmıştır. Ödev notu, yıl içi ortalamasının %5'ini teşkil eder.
+          Ödevi başarıyla tamamlamak öğrencilerin araştırma ve analiz yeteneklerini geliştirmelerine yardımcı olur. DEÜ YDY'de verilen ödevler dersin ana konularını pekiştirmeye yönelik hazırlanır.
         </p>
       </div>
 
       <div class="content-section">
         <h3>Writing Değerlendirmesi (%5)</h3>
         <p>
-          İngilizce yazma becerisi, dil öğreniminin önemli bir parçasıdır. Writing notları, öğrencilerin essaylara, özetlere ve diğer yazılı ürünlerine verilen puanları kapsar. Bu değerlendirmeler, öğrencilerin yazılı İngilizce ifade becerilerini artırmaya yardımcı olur ve yıl içi ortalamasının %5'ini oluşturur.
+          İngilizce yazma becerisi dil öğreniminin önemli bir parçasıdır. Writing notları öğrencilerin essaylara, özetlere ve diğer yazılı ürünlerine verilen puanları kapsar.
         </p>
       </div>
 
@@ -801,20 +818,20 @@
           <strong>Yıl İçi Ortalaması</strong> = (Quiz Ort. × 0,20) + (Vize Ort. × 0,60) + (Sunum × 0,05) + (Katılım × 0,05) + (Ödev × 0,05) + (Writing × 0,05)
         </p>
         <p>
-          Bu formülde tüm notlar toplanarak ağırlıklı ortalama hesaplanır. Fakirüni aracı, bu karmaşık hesaplamayı otomatik olarak yaparak öğrencilerin zamanını ve çabasını kurtarır.
+          Bu formülde tüm notlar toplanarak ağırlıklı ortalama hesaplanır. Fakirüni aracı bu karmaşık hesaplamayı otomatik olarak yaparak öğrencilerin zamanını ve çabasını korur.
         </p>
       </div>
 
       <div class="content-section">
         <h3>Final Sınavı ve Genel Ortalamanın Hesaplanması</h3>
         <p>
-          Final sınavında başarılı olamayan ya da yıl içi ortalamasının geçme notunun altında kalması durumunda, öğrenciler final sınavına girer. 
+          Final sınavında başarılı olamayan ya da yıl içi ortalamasının geçme notunun altında kalması durumunda öğrenciler final sınavına girer. 
         </p>
         <p>
           <strong>Genel Ortalama</strong> = (Yıl İçi Ortalaması × 0,40) + (Final Sınavı × 0,60)
         </p>
         <p>
-          Eğer yıl içi ortalamanız geçme notunun üzerine çıkarsanız, finalin yapılmamış olması halinde yıl içi ortalamanız dersin son notu olur. Ancak finalini yaparsanız, final sınavı %60 ağırlığında sayılarak son nota dahil edilir.
+          Yıl içi ortalamanız geçme notunun üzerine çıkarsa finalin yapılmamış olması halinde yıl içi ortalamanız dersin son notu olur. Ancak finalini yaparsanız final sonucu daha iyi ise yeni ortalama hesaplanır.
         </p>
       </div>
 
@@ -824,24 +841,24 @@
           DEÜ YDY hazırlık sınıfında farklı kuru seçenekleri bulunmaktadır:
         </p>
         <ul>
-          <li><strong>A Kuru:</strong> Geçme notu 85'tir. Bu kuru seçen öğrenciler, yıl içi ortalaması 85'i geçerse dersten geçer ve finale gitmek zorunda değildir.</li>
-          <li><strong>B Kuru:</strong> Geçme notu 80'dir. Biraz daha kolay koşullar sunan bu kurada, öğrenciler 80 ortalama ile dersten geçebilirler.</li>
-          <li><strong>C Kuru:</strong> Geçme notu 75'tir. En rahat koşullar sunan bu kurada, 75 ortalama yeterlidir.</li>
+          <li><strong>A Kuru:</strong> Geçme notu 85'tir. Bu kuru seçen öğrenciler yıl içi ortalaması 85'i geçerse dersten geçer ve finale gitmek zorunda değildir.</li>
+          <li><strong>B Kuru:</strong> Geçme notu 80'dir. Biraz daha kolay koşullar sunan bu kurada öğrenciler 80 ortalama ile dersten geçebilirler.</li>
+          <li><strong>C Kuru:</strong> Geçme notu 75'tir. En uygun koşullar sunan bu kurada 75 ortalama yeterlidir.</li>
         </ul>
       </div>
 
       <div class="content-section">
         <h3>Fakirüni Aracını Kullanmanın Faydaları</h3>
         <p>
-          Fakirüni, DEÜ YDY öğrencilerinin not hesaplamalarını kolaylaştıran bir web uygulamasıdır. Aracın temel faydaları şunlardır:
+          Fakirüni, DEÜ YDY öğrencilerinin not hesaplamalarını kolaylaştıran profesyonel bir web uygulamasıdır. Aracın temel faydaları şunlardır:
         </p>
         <ul>
           <li>🚀 <strong>Hızlı Hesaplama:</strong> Karmaşık formülü saniyeler içinde hesaplar</li>
           <li>✅ <strong>Doğru Sonuçlar:</strong> Matematiksel hataları ortadan kaldırır</li>
-          <li>📊 <strong>Ayrıntılı Breakdown:</strong> Her bileşenin kontribüsyonunu gösterir</li>
+          <li>📊 <strong>Ayrıntılı Analiz:</strong> Her bileşenin katkısını gösterir</li>
           <li>🆓 <strong>Tamamen Ücretsiz:</strong> Gizli ücret veya abonelik yoktur</li>
           <li>📱 <strong>Mobil Uyumlu:</strong> Telefon ve tablet üzerinde kullanılabilir</li>
-          <li>🔐 <strong>Gizlilik:</strong> Verileriniz sunucuda saklanmaz, sadece tarayıcınızda işlenir</li>
+          <li>🔐 <strong>Gizlilik Korumalı:</strong> Verileriniz sunucuda saklanmaz, sadece tarayıcınızda işlenir</li>
         </ul>
       </div>
 
@@ -873,7 +890,7 @@
 
         <h3 style="color: #ff9800; margin-top: 25px; margin-bottom: 10px;">Bu site ne işe yarar?</h3>
         <p>
-          Fakirüni, Dokuz Eylül Üniversitesi Yabancı Diller Yüksekokulu (DEÜ YDY) öğrencileri için hazırlanmış kapsamlı bir not hesaplama aracıdır. Öğrenciler bu platform sayesinde quiz, vize, sunum, katılım, ödev ve writing notlarını girerek yıl içi ortalamasını anında öğrenebilirler. Ayrıca final sınavı sonrası genel ortalamasını da hesaplayabilirler.
+          Fakirüni, Dokuz Eylül Üniversitesi Yabancı Diller Yüksekokulu (DEÜ YDY) öğrencileri için hazırlanmış kapsamlı bir not hesaplama aracıdır. Öğrenciler bu platform sayesinde not ortalaması hesaplamalarını hızlı ve doğru şekilde gerçekleştirebilirler.
         </p>
 
         <h3 style="color: #ff9800; margin-top: 25px; margin-bottom: 10px;">Puanlama/Not Sistemi Nasıl Yapılır?</h3>
@@ -886,12 +903,12 @@
           • Ödev Ortalaması × %5<br>
           • Writing Ortalaması × %5<br><br>
           
-          Daha sonra yıl içi notunun %40'ı ve final notunun %60'ı alınarak toplam yıl sonu notu hesaplanır. Fakirüni aracı bu tüm hesaplamaları otomatik olarak yaparak zaman kazandırır.
+          Daha sonra yıl içi notunun %40'ı ve final notunun %60'ı alınarak toplam yıl sonu notu hesaplanır. Fakirüni aracı bu tüm hesaplamaları otomatik olarak yaparak zaman tasarrufu sağlar.
         </p>
 
         <h3 style="color: #ff9800; margin-top: 25px; margin-bottom: 10px;">Geçme Notı Kaç Belirlenmiştir?</h3>
         <p>
-          Geçme notu, seçilen kura göre değişiklik gösterir:
+          Geçme notu seçilen kura göre değişiklik gösterir:
         </p>
         <ul style="margin-left: 20px;">
           <li><strong>A Kuru:</strong> Geçme notu 85</li>
@@ -899,37 +916,37 @@
           <li><strong>C Kuru:</strong> Geçme notu 75</li>
         </ul>
         <p>
-          Yıl içi ortalamanız geçme notunun üzerine ��ıkarsa, finala katılmadan dersten geçersiniz.
+          Yıl içi ortalamanız geçme notunun üzerine çıkarsa finala katılmadan dersten geçersiniz.
         </p>
 
         <h3 style="color: #ff9800; margin-top: 25px; margin-bottom: 10px;">Bu site resmi bir platform mı?</h3>
         <p>
-          Hayır. Fakirüni, herhangi bir resmi kurumla bağlantılı değildir. Bu site, DEÜ YDY öğrencileri tarafından bağımsız olarak oluşturulmuş bir projedir. Hesaplamalarda küçük sapmalar olabilir; lütfen resmî kaynaklardan da kontrol ediniz. Site tamamen öğrencilerin kolaylığı için geliştirilmiştir.
+          Hayır. Fakirüni herhangi bir resmi kurumla bağlantılı değildir. Bu site DEÜ YDY öğrencileri tarafından bağımsız olarak oluşturulmuş bir projedir. Hesaplamalarda küçük farklar olabileceğinden resmi sonuçlar için kayıt müdürlüğüne danışınız.
         </p>
 
         <h3 style="color: #ff9800; margin-top: 25px; margin-bottom: 10px;">Verilerin Gizliliği Nasıl Korunur?</h3>
         <p>
-          Fakirüni'de girdiğiniz tüm notlar yalnızca tarayıcınızda işlenir. Sunucuya hiçbir veri gönderilmez ve kaydedilmez. Sayfayı kapattığınızda verileriniz silinir. Gizliliğiniz tam olarak korunmaktadır.
+          Fakirüni'de girdiğiniz tüm notlar yalnızca tarayıcınızda işlenir. Sunucuya hiçbir veri gönderilmez ve kaydedilmez. Sayfayı kapattığınızda verileriniz silinir. Gizliliğiniz tamamen korunur.
         </p>
 
         <h3 style="color: #ff9800; margin-top: 25px; margin-bottom: 10px;">Fakirüni Tamamen Ücretsiz mi?</h3>
         <p>
-          Evet! Fakirüni tamamen ücretsizdir. Gizli ücretler, abonelik ücretleri veya premium özellikleri yoktur. Tüm öğrenciler bu aracı sınırsız şekilde kullanabilirler. Reklam destekli bir modeldir ve öğrenci çıkarlarını koruma altına alınmıştır.
+          Evet! Fakirüni tamamen ücretsizdir. Gizli ücretler, abonelik ücretleri veya premium özellikleri yoktur. Tüm öğrenciler bu aracı sınırsız şekilde kullanabilirler.
         </p>
 
-        <h3 style="color: #ff9800; margin-top: 25px; margin-bottom: 10px;">Mobil Cihazlarda Kullanabilir miyin?</h3>
+        <h3 style="color: #ff9800; margin-top: 25px; margin-bottom: 10px;">Mobil Cihazlarda Kullanabilir misiniz?</h3>
         <p>
           Evet! Fakirüni responsive bir tasarıma sahiptir ve tüm mobil cihazlarda (telefon, tablet) mükemmel şekilde çalışır. Uygulama indirilmesine gerek yoktur; tarayıcıdan doğrudan erişim sağlayabilirsiniz.
         </p>
 
         <h3 style="color: #ff9800; margin-top: 25px; margin-bottom: 10px;">Hesaplamalarda Hata Olursa Ne Yapmalıyım?</h3>
         <p>
-          Eğer hesaplamalarda hata tespit ederseniz, lütfen iletişim sayfasından geri bildirim gönderin. Geliştirme ekibimiz hızlı şekilde soruları çözmeye çalışır. Siz de formülü manuel olarak kontrol ederek doğruluğunu teyit edebilirsiniz.
+          Hesaplamalarda hata tespit ederseniz lütfen iletişim sayfasından geri bildirim gönderin. Geliştirme ekibimiz hızlı şekilde sorunları çözmeye çalışır. Siz de formülün doğru olup olmadığını kontrol edebilirsiniz.
         </p>
 
         <h3 style="color: #ff9800; margin-top: 25px; margin-bottom: 10px;">Başka DEÜ Bölümleri İçin Uygun mu?</h3>
         <p>
-          Fakirüni özel olarak DEÜ YDY hazırlık sınıfı not sistemi için tasarlanmıştır. Diğer bölümlerin farklı not sistemleri olabileceğinden, onlar için doğru sonuç vermeyebilir. Bölümünüzün not sistemi DEÜ YDY sistemiyle uyuyorsa, aracı kullanabilirsiniz.
+          Fakirüni özel olarak DEÜ YDY hazırlık sınıfı not sistemi için tasarlanmıştır. Diğer bölümlerin farklı not sistemleri olabileceğinden onlar için doğru sonuç vermeyebilir.
         </p>
 
         <p style="text-align: center; font-style: italic; margin-top: 30px; padding-top: 20px; border-top: 2px solid #ddd;">
@@ -942,14 +959,14 @@
   <!-- Menü Paneli -->
   <div id="sideMenu" class="side-menu">
     <div class="menu-header">
-      <span class="close-btn" onclick="closeMenu()">&times;</span>
+      <span class="close-btn" onclick="closeMenu()" title="Menüyü kapat">&times;</span>
       <h3>Menü</h3>
     </div>
-    <a href="/">Ana Sayfa</a>
-    <a href="/hakkimizda.html">Hakkımızda</a>
-    <a href="/yazokullari.html">Yaz Okulları Haritası</a>
-    <a href="/telegram-botlar.html">Telegram Botlarımız</a>
-    <a href="mailto:slhsn48@gmail.com">İletişim</a>
+    <a href="/" title="Ana sayfaya git">Ana Sayfa</a>
+    <a href="/hakkimizda.html" title="Hakkımızda sayfasına git">Hakkımızda</a>
+    <a href="/yazokullari.html" title="Yaz okulları haritasına git">Yaz Okulları Haritası</a>
+    <a href="/telegram-botlar.html" title="Telegram botlarımıza git">Telegram Botlarımız</a>
+    <a href="mailto:slhsn48@gmail.com" title="E-posta gönder">İletişim</a>
   </div>
 </body>
 </html>
